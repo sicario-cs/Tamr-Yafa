@@ -56,14 +56,7 @@ export function Header({ onNavigate, currentPage = 'home' }) {
 
                     {/* Actions */}
                     <div className="flex items-center gap-2 md:gap-4">
-                        <button
-                            type="button"
-                            className="hidden md:flex p-2 text-[#7A4B2A] hover:text-[#5A2D0C] rounded-lg hover:bg-[#7A4B2A]/10 transition-colors"
-                            aria-label="Search"
-                        >
-                            <Search className="w-5 h-5" />
-                        </button>
-
+                       
                         <button
                             type="button"
                             onClick={() => onNavigate?.('cart')}

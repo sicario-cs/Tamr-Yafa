@@ -1,5 +1,7 @@
 import dubaiChocolateImage from './assets/ProductsImage/DubaiChocolate.jpeg';
 import chocolateTamrImage from './assets/ProductsImage/chocolateTamr.jpeg';
+import asafeeriQatayefImage from './assets/ProductsImage/qatayf.png';
+
 export const products = [
     {
         id: 'chocolate-dates',
@@ -12,15 +14,15 @@ export const products = [
         ingredients: 'Dark chocolate (cacao mass, sugar, cocoa butter), cream, sea salt, natural vanilla',
         inStock: true,
         featured: true,
-        relatedProducts: ['Dubai Chocolate', 'gift-festive'],
+        relatedProducts: ['Dubai Chocolate'],
     },
     {
         id: 'Dubai Chocolate',
         name: 'Dubai Chocolate',
         price: 7,
-        description: 'A rich and indulgent chocolate experience with a bold yet balanced character. Smooth, refined, and crafted with attention to detail, Dubai Chocolate reflects luxury, quality, and a distinctive',
+        description: 'A rich and indulgent chocolate experience with a bold yet balanced character. Smooth, refined, and crafted with attention to detail, Dubai Chocolate reflects luxury, quality, and a distinctive taste.',
         image: dubaiChocolateImage,
-        category: 'bars',
+        category: 'pieces',
         cacaoPercent: 70,
         highlights: ['70% pistachio', 'Minimal sugar', 'Gluten-free'],
         ingredients: 'Cacao mass, cane sugar, cocoa butter, soy lecithin, natural vanilla',
@@ -31,16 +33,19 @@ export const products = [
         relatedProducts: ['bar-85-percent', 'chocolate-dates'],
     },
     {
-        id: 'gift-festive',
-        name: 'Festive Gift Box',
-        price: 45,
-        description: 'An assortment of 12 artisan chocolates in a luxury box. Perfect for gifting or personal indulgence.',
-        image: 'https://images.unsplash.com/photo-1629610306962-a8aa73153d0e?w=1080&q=80',
-        category: 'gift-sets',
-        highlights: ['Gift-ready', 'Includes tasting notes', 'Limited edition'],
+        id: 'asafeeri-qatayef',
+        name: 'Asafeeri Qatayef',
+        price: 8,
+        description: 'Delicate Asafeeri qatayef filled with rich, creamy filling and finished with a light touch of syrup. Soft, indulgent, and crafted to capture the authentic taste of traditional Arabic desserts.',
+        image: asafeeriQatayefImage,
+        category: 'desserts',
+        highlights: ['Freshly made', 'Cream-filled', 'Traditional recipe'],
+        ingredients: 'Flour, milk, yeast, sugar, cream filling, natural flavorings',
+        nutrition: 'Per piece: 180 kcal, 9g fat, 22g carbs, 3g protein',
         inStock: true,
         featured: true,
-        relatedProducts: ['gift-classics', 'gift-premium'],
+        variants: { sizes: ['6 pieces', '12 pieces'] },
+        relatedProducts: ['chocolate-dates'],
     },
     {
         id: 'bar-85-percent',
@@ -66,7 +71,7 @@ export const products = [
         category: 'truffles',
         highlights: ['38% cacao', 'Madagascar vanilla', 'Box of 12'],
         inStock: true,
-        relatedProducts: ['truffle-dark-1'],
+        relatedProducts: ['chocolate-dates'],
     },
     {
         id: 'bar-milk-caramel',
@@ -84,12 +89,12 @@ export const products = [
         id: 'gift-classics',
         name: 'Classic Collection Gift Box',
         price: 35,
-        description: 'A curated selection of our signature bars and truffles. Perfect introduction to Aurora.',
+        description: 'A curated selection of our signature bars and truffles. Perfect introduction to Tamr Yafa.',
         image: 'https://images.unsplash.com/photo-1629610306962-a8aa73153d0e?w=1080&q=80',
         category: 'gift-sets',
         highlights: ['8 pieces', 'Variety of flavors', 'Beautiful packaging'],
         inStock: true,
-        relatedProducts: ['gift-festive', 'gift-premium'],
+        relatedProducts: ['gift-premium'],
     },
     {
         id: 'gift-premium',
@@ -100,8 +105,8 @@ export const products = [
         category: 'gift-sets',
         highlights: ['16 pieces', 'Premium selection', 'Luxury packaging', 'Tasting guide included'],
         inStock: true,
-        featured: true,
-        relatedProducts: ['gift-festive', 'gift-classics'],
+        featured: false,
+        relatedProducts: ['gift-classics'],
     },
     {
         id: 'seasonal-valentine',
@@ -112,7 +117,7 @@ export const products = [
         category: 'seasonal',
         highlights: ['Limited edition', 'Heart-shaped box', '10 pieces'],
         inStock: true,
-        relatedProducts: ['gift-festive'],
+        relatedProducts: ['gift-classics'],
     },
 ];
 
