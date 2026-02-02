@@ -180,6 +180,8 @@ export function HomePage() {
 
                     <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4">
                         <input
+                            id="newsletterEmail"
+                            name="newsletterEmail"
                             type="email"
                             placeholder="Enter your email"
                             value={newsletterEmail}

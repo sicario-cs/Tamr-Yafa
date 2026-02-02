@@ -4,6 +4,9 @@ import { ShopPage } from './pages/ShopPage'
 import { CartPage } from './pages/CartPage'
 import { ProductDetailPage } from './pages/ProductDetailPage'
 import { CheckoutPage } from './pages/CheckoutPage'
+import { GiftSetsPage } from './pages/GiftSetsPage'
+import { AboutPage } from './pages/AboutPage'
+import { ContactPage } from './pages/ContactPage'
 
 function App() {
     return (
@@ -15,11 +18,10 @@ function App() {
                 <Route path="/product/:productId" element={<ProductDetailPage />} />
                 <Route path="/checkout" element={<CheckoutPage />} />
 
-                {/* Placeholder routes for future static pages */}
-                <Route path="/gifts" element={<HomePage />} />
-                <Route path="/about" element={<HomePage />} />
+                <Route path="/gifts" element={<GiftSetsPage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/contact" element={<ContactPage />} />
                 <Route path="/blog" element={<HomePage />} />
-                <Route path="/contact" element={<HomePage />} />
 
                 {/* Fallback to home for unknown routes */}
                 <Route path="*" element={<Navigate to="/" replace />} />

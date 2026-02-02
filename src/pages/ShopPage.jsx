@@ -113,6 +113,8 @@ export function ShopPage() {
               <div className="border-t border-[#7A4B2A]/20 pt-6">
                 <h3 className="font-heading text-[#5A2D0C] mb-4">Cacao %</h3>
                 <select
+                  id="cacaoFilter"
+                  name="cacaoFilter"
                   value={cacaoFilter}
                   onChange={(e) => setCacaoFilter(e.target.value)}
                   className="w-full px-3 py-2 rounded-lg bg-[#F3E9E1] border border-[#7A4B2A]/20 text-[#5A2D0C] outline-none focus:ring-2 focus:ring-[#7A4B2A]/30"
@@ -125,10 +127,12 @@ export function ShopPage() {
 
               <div className="border-t border-[#7A4B2A]/20 pt-6">
                 <h3 className="font-heading text-[#5A2D0C] mb-4">
-                  Price Range: ${priceRange[0]} - ${priceRange[1]}
+                  Price Range: ₪{priceRange[0]} - ₪{priceRange[1]}
                 </h3>
                 <div className="space-y-2">
                   <input
+                    id="priceRangeMax"
+                    name="priceRangeMax"
                     type="range"
                     min="0"
                     max="100"
@@ -139,6 +143,8 @@ export function ShopPage() {
                   />
                   <div className="flex gap-2">
                     <input
+                      id="priceMin"
+                      name="priceMin"
                       type="number"
                       min="0"
                       max="100"
@@ -147,6 +153,8 @@ export function ShopPage() {
                       className="flex-1 px-2 py-1 rounded bg-[#F3E9E1] border border-[#7A4B2A]/20 text-[#5A2D0C] outline-none focus:ring-2 focus:ring-[#7A4B2A]/30"
                     />
                     <input
+                      id="priceMax"
+                      name="priceMax"
                       type="number"
                       min="0"
                       max="100"

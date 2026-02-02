@@ -41,11 +41,11 @@ export function CheckoutPage() {
       formData.notes ? `Notes: ${formData.notes}` : null,
       formData.notes ? '' : null,
       '📦 *Items:*',
-      ...cart.map((item) => `• ${item.name} x${item.quantity} — $${(item.price * item.quantity).toFixed(2)}`),
+      ...cart.map((item) => `• ${item.name} x${item.quantity} — ₪${(item.price * item.quantity).toFixed(2)}`),
       '',
-      `💰 Subtotal: $${subtotal.toFixed(2)}`,
-      `🚚 Shipping: $${shipping.toFixed(2)}`,
-      `💵 *Total: $${total.toFixed(2)}*`,
+      `💰 Subtotal: ₪${subtotal.toFixed(2)}`,
+      `🚚 Shipping: ₪${shipping.toFixed(2)}`,
+      `💵 *Total: ₪${total.toFixed(2)}*`,
     ];
     return lines.filter(Boolean).join('\n');
   };
@@ -295,7 +295,7 @@ export function CheckoutPage() {
                 className="w-full flex items-center justify-center gap-2 bg-[#7A4B2A] hover:bg-[#5A2D0C] text-white px-6 py-4 rounded-lg transition-colors font-medium"
               >
                 <Lock className="w-4 h-4" />
-                Send Order via WhatsApp - ${total.toFixed(2)}
+                Send Order via WhatsApp - ₪{total.toFixed(2)}
               </button>
 
               <p className="text-xs text-center text-[#7A4B2A]/60">
@@ -330,7 +330,7 @@ export function CheckoutPage() {
                       <p className="text-xs text-[#7A4B2A]/60">Qty: {item.quantity}</p>
                     </div>
                     <p className="text-sm text-[#5A2D0C] font-medium">
-                      ${(item.price * item.quantity).toFixed(2)}
+                      ₪{(item.price * item.quantity).toFixed(2)}
                     </p>
                   </div>
                 ))}
@@ -339,16 +339,16 @@ export function CheckoutPage() {
               <div className="border-t border-[#7A4B2A]/20 pt-4 space-y-3">
                 <div className="flex justify-between text-[#7A4B2A]">
                   <span>Subtotal</span>
-                  <span>${subtotal.toFixed(2)}</span>
+                  <span>₪{subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-[#7A4B2A]">
                   <span>Shipping</span>
-                  <span>${shipping.toFixed(2)}</span>
+                  <span>₪{shipping.toFixed(2)}</span>
                 </div>
                 <div className="border-t border-[#7A4B2A]/20 pt-3 flex justify-between">
                   <span className="font-heading text-[#5A2D0C]">Total</span>
                   <span className="font-heading text-[#5A2D0C] text-xl">
-                    ${total.toFixed(2)}
+                    ₪{total.toFixed(2)}
                   </span>
                 </div>
               </div>

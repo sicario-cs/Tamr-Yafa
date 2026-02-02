@@ -33,7 +33,7 @@ export function ProductDetailPage() {
             </button>
           </div>
         </div>
-        <Footer onNavigate={onNavigate} />
+        <Footer />
       </div>
     );
   }
@@ -141,7 +141,7 @@ export function ProductDetailPage() {
             </div>
 
             <div className="text-4xl font-heading text-[#5A2D0C] mb-6">
-              ${product.price}
+              ₪{product.price}
             </div>
 
             {/* Variants */}
@@ -149,8 +149,10 @@ export function ProductDetailPage() {
               <div className="space-y-4 mb-6">
                 {product.variants.sizes && (
                   <div>
-                    <label className="block text-[#5A2D0C] mb-2">Size</label>
+                    <label htmlFor="variantSize" className="block text-[#5A2D0C] mb-2">Size</label>
                     <select
+                      id="variantSize"
+                      name="variantSize"
                       value={selectedVariant.size || ''}
                       onChange={(e) =>
                         setSelectedVariant({ ...selectedVariant, size: e.target.value })
@@ -169,8 +171,10 @@ export function ProductDetailPage() {
 
                 {product.variants.flavors && (
                   <div>
-                    <label className="block text-[#5A2D0C] mb-2">Flavor</label>
+                    <label htmlFor="variantFlavor" className="block text-[#5A2D0C] mb-2">Flavor</label>
                     <select
+                      id="variantFlavor"
+                      name="variantFlavor"
                       value={selectedVariant.flavor || ''}
                       onChange={(e) =>
                         setSelectedVariant({ ...selectedVariant, flavor: e.target.value })
@@ -219,20 +223,20 @@ export function ProductDetailPage() {
             <button
               type="button"
               onClick={handleAddToCart}
-              disabled={!product.inStock}
+              disabled={!product.available}
               className={`w-full flex items-center justify-center gap-2 px-6 py-4 rounded-lg transition-colors font-medium mb-4 ${
-                product.inStock
+                product.available
                   ? 'bg-[#7A4B2A] hover:bg-[#5A2D0C] text-white'
                   : 'bg-gray-300 text-gray-500 cursor-not-allowed'
               }`}
             >
               <ShoppingCart className="w-5 h-5" />
-              {product.inStock ? 'Add to Cart' : 'Out of Stock'}
+              {product.available ? 'Add to Cart' : 'Out of Stock'}
             </button>
 
-            {product.inStock && (
+            {product.available && (
               <p className="text-center text-sm text-[#7FB069]">
-                ✓ In stock and ready to ship
+                ✓ Available and ready to ship
               </p>
             )}
           </div>

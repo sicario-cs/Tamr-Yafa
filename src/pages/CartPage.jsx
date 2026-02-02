@@ -95,7 +95,7 @@ export function CartPage() {
                           {item.variant.flavor && `Flavor: ${item.variant.flavor}`}
                         </p>
                       )}
-                      <p className="text-[#5A2D0C] font-medium">${item.price}</p>
+                      <p className="text-[#5A2D0C] font-medium">₪{item.price}</p>
                     </div>
 
                     <div className="flex flex-col items-end gap-4">
@@ -150,33 +150,35 @@ export function CartPage() {
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between text-[#7A4B2A]">
                   <span>Subtotal</span>
-                  <span>${subtotal.toFixed(2)}</span>
+                  <span>₪{subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-[#7A4B2A]">
                   <span>Shipping</span>
-                  <span>${shipping.toFixed(2)}</span>
+                  <span>₪{shipping.toFixed(2)}</span>
                 </div>
                 {discount > 0 && (
                   <div className="flex justify-between text-[#7FB069]">
                     <span>Discount</span>
-                    <span>-${discount.toFixed(2)}</span>
+                    <span>-₪{discount.toFixed(2)}</span>
                   </div>
                 )}
                 <div className="border-t border-[#7A4B2A]/20 pt-3 flex justify-between">
                   <span className="font-heading text-[#5A2D0C]">Total</span>
                   <span className="font-heading text-[#5A2D0C] text-xl">
-                    ${total.toFixed(2)}
+                    ₪{total.toFixed(2)}
                   </span>
                 </div>
               </div>
 
               {/* Promo Code */}
               <div className="mb-6">
-                <label className="block text-[#5A2D0C] text-sm mb-2">
+                <label htmlFor="promoCode" className="block text-[#5A2D0C] text-sm mb-2">
                   Promo Code
                 </label>
                 <div className="flex gap-2">
                   <input
+                    id="promoCode"
+                    name="promoCode"
                     type="text"
                     value={promoCode}
                     onChange={(e) => setPromoCode(e.target.value)}

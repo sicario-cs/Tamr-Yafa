@@ -2,7 +2,7 @@ import React from 'react';
 import { ShoppingCart } from 'lucide-react';
 
 export function ProductCard({ product, onViewDetails, onAddToCart }) {
-    const { id, name, price, image, description, highlights, cacaoPercent, inStock = true } = product;
+    const { id, name, price, image, description, highlights, cacaoPercent, available = true } = product;
 
     return (
         <div className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-[#7A4B2A]/10">
@@ -16,7 +16,7 @@ export function ProductCard({ product, onViewDetails, onAddToCart }) {
                     alt={name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                {!inStock && (
+                {!available && (
                     <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
                         <span className="bg-white text-[#5A2D0C] px-3 py-1 rounded text-sm font-medium">
                             Out of Stock
@@ -61,12 +61,12 @@ export function ProductCard({ product, onViewDetails, onAddToCart }) {
 
                 <div className="flex items-center justify-between">
                     <span className="text-[#5A2D0C] font-heading text-xl">
-                        ${price}
+                        ₪{price}
                     </span>
                     <button
                         type="button"
                         onClick={() => onAddToCart?.(product)}
-                        disabled={!inStock}
+                        disabled={!available}
                         className="flex items-center gap-1 bg-[#7A4B2A] hover:bg-[#5A2D0C] disabled:opacity-50 disabled:cursor-not-allowed text-white px-3 py-1.5 rounded text-sm font-medium transition-colors"
                     >
                         <ShoppingCart className="w-4 h-4" />
