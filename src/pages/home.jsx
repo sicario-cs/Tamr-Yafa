@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Leaf, Award, Heart, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { ProductCard } from '../components/ProductCard';
@@ -7,9 +8,10 @@ import { useCart } from '../components/CartContext.jsx';
 import { getFeaturedProducts } from '../products-data.js';
 import homePageImage from '../assets/HomePageImage.png';
 
-export function HomePage({ onNavigate = () => { } }) {
+export function HomePage() {
     const [newsletterEmail, setNewsletterEmail] = useState('');
     const { addToCart } = useCart();
+    const navigate = useNavigate();
 
     const handleNewsletterSubmit = (e) => {
         e.preventDefault();
@@ -28,7 +30,7 @@ export function HomePage({ onNavigate = () => { } }) {
 
     return (
         <div>
-            <Header onNavigate={onNavigate} currentPage="home" />
+            <Header />
             {/* Hero Section */}
             <section className="relative h-[600px] md:h-[700px] flex items-center">
                 <div className="absolute inset-0">
@@ -53,7 +55,7 @@ export function HomePage({ onNavigate = () => { } }) {
                         </p>
                         <button
                             type="button"
-                            onClick={() => onNavigate('shop')}
+                            onClick={() => navigate('/shop')}
                             className="inline-flex items-center gap-2 bg-[#B8860B] hover:bg-[#B8860B]/90 text-white font-medium py-3 px-6 rounded-lg transition-colors"
                         >
                             Shop Signature Collection
@@ -114,19 +116,19 @@ export function HomePage({ onNavigate = () => { } }) {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
                         {getFeaturedProducts().map((product) => (
-                            <ProductCard
-                                key={product.id}
-                                product={product}
-                                onViewDetails={(id) => onNavigate('product', id)}
-                                onAddToCart={handleAddToCart}
-                            />
+                                <ProductCard
+                                    key={product.id}
+                                    product={product}
+                                    onViewDetails={(id) => navigate(`/product/${id}`)}
+                                    onAddToCart={handleAddToCart}
+                                />
                         ))}
                     </div>
 
                     <div className="text-center">
                         <button
                             type="button"
-                            onClick={() => onNavigate('shop')}
+                            onClick={() => navigate('/shop')}
                             className="py-3 px-6 border-2 border-[#7A4B2A] text-[#7A4B2A] rounded-lg hover:bg-[#7A4B2A] hover:text-white font-medium transition-colors"
                         >
                             View All Products
@@ -147,8 +149,8 @@ export function HomePage({ onNavigate = () => { } }) {
                                 Our beautifully curated gift sets are perfect for celebrations, thank you gifts, or simply treating someone special.
                             </p>
                             <button
-                                type="button"
-                                onClick={() => onNavigate('gifts')}
+                            type="button"
+                            onClick={() => navigate('/gifts')}
                                 className="inline-flex items-center gap-2 bg-[#B8860B] hover:bg-[#B8860B]/90 text-white font-medium py-3 px-6 rounded-lg transition-colors"
                             >
                                 Explore Gift Sets
@@ -194,7 +196,7 @@ export function HomePage({ onNavigate = () => { } }) {
                     </form>
                 </div>
             </section>
-            <Footer onNavigate={onNavigate} />
+            <Footer />
         </div>
     );
 }

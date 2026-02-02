@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Filter } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { ProductCard } from '../components/ProductCard';
 import { products } from '../products-data';
 import { useCart } from '../components/CartContext';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 
-export function ShopPage({ onNavigate }) {
+export function ShopPage() {
   const { addToCart } = useCart();
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [priceRange, setPriceRange] = useState([0, 100]);
   const [cacaoFilter, setCacaoFilter] = useState('all');
@@ -54,7 +56,7 @@ export function ShopPage({ onNavigate }) {
 
   return (
     <div className="min-h-screen bg-[#F3E9E1]">
-      <Header onNavigate={onNavigate} currentPage="shop" />
+      <Header />
       
       {/* Header */}
       <div className="bg-[#5A2D0C] py-16">
@@ -180,7 +182,7 @@ export function ShopPage({ onNavigate }) {
                   <ProductCard
                     key={product.id}
                     product={product}
-                    onViewDetails={(id) => onNavigate('product', id)}
+                    onViewDetails={(id) => navigate(`/product/${id}`)}
                     onAddToCart={handleAddToCart}
                   />
                 ))}
@@ -201,7 +203,7 @@ export function ShopPage({ onNavigate }) {
         </div>
       </div>
       
-      <Footer onNavigate={onNavigate} />
+      <Footer />
     </div>
   );
 }

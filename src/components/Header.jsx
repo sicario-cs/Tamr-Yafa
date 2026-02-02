@@ -1,21 +1,31 @@
 import React, { useState } from 'react';
-import { Search, ShoppingCart, Menu, X } from 'lucide-react';
+import { ShoppingCart, Menu, X } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useCart } from './CartContext.jsx';
 import logoImage from '../assets/logo.jpeg';
 
-export function Header({ onNavigate, currentPage = 'home' }) {
+export function Header() {
     const { getCartCount } = useCart();
     const cartCount = getCartCount();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const navItems = [
-        { label: 'Home', page: 'home' },
-        { label: 'Shop', page: 'shop' },
-        { label: 'Gift Sets', page: 'gifts' },
-        { label: 'About', page: 'about' },
-        { label: 'Blog', page: 'blog' },
-        { label: 'Contact', page: 'contact' },
+        { label: 'Home', page: 'home', path: '/' },
+        { label: 'Shop', page: 'shop', path: '/shop' },
+        { label: 'Gift Sets', page: 'gifts', path: '/gifts' },
+        { label: 'About', page: 'about', path: '/about' },
+        { label: 'Blog', page: 'blog', path: '/blog' },
+        { label: 'Contact', page: 'contact', path: '/contact' },
     ];
+
+    const isActive = (path) => {
+        if (path === '/') {
+            return location.pathname === '/';
+        }
+        return location.pathname === path || location.pathname.startsWith(`${path}/`);
+    };
 
     return (
         <header className="sticky top-0 z-50 bg-[#F3E9E1] border-b border-[#7A4B2A]/20">
@@ -24,7 +34,7 @@ export function Header({ onNavigate, currentPage = 'home' }) {
                     {/* Logo */}
                     <button
                         type="button"
-                        onClick={() => onNavigate?.('home')}
+                        onClick={() => navigate('/')}
                         className="flex items-center gap-2 group"
                     >
                         <img
@@ -43,8 +53,8 @@ export function Header({ onNavigate, currentPage = 'home' }) {
                             <button
                                 key={item.page}
                                 type="button"
-                                onClick={() => onNavigate?.(item.page)}
-                                className={`font-body transition-colors ${currentPage === item.page
+                                onClick={() => navigate(item.path)}
+                                className={`font-body transition-colors ${isActive(item.path)
                                     ? 'text-[#5A2D0C]'
                                     : 'text-[#7A4B2A] hover:text-[#5A2D0C]'
                                     }`}
@@ -56,10 +66,9 @@ export function Header({ onNavigate, currentPage = 'home' }) {
 
                     {/* Actions */}
                     <div className="flex items-center gap-2 md:gap-4">
-                       
                         <button
                             type="button"
-                            onClick={() => onNavigate?.('cart')}
+                            onClick={() => navigate('/cart')}
                             className="relative p-2 text-[#7A4B2A] hover:text-[#5A2D0C] rounded-lg hover:bg-[#7A4B2A]/10 transition-colors"
                             aria-label="Cart"
                         >
@@ -92,10 +101,10 @@ export function Header({ onNavigate, currentPage = 'home' }) {
                                 key={item.page}
                                 type="button"
                                 onClick={() => {
-                                    onNavigate?.(item.page);
+                                    navigate(item.path);
                                     setMobileMenuOpen(false);
                                 }}
-                                className={`block w-full text-left py-3 px-4 font-body transition-colors ${currentPage === item.page
+                                className={`block w-full text-left py-3 px-4 font-body transition-colors ${isActive(item.path)
                                     ? 'text-[#5A2D0C] bg-[#5A2D0C]/5'
                                     : 'text-[#7A4B2A] hover:bg-[#5A2D0C]/5'
                                     }`}

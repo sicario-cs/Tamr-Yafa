@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { ArrowLeft, ShoppingCart, Heart, Share2, Star, Plus, Minus } from 'lucide-react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getProductById, getRelatedProducts } from '../products-data';
 import { useCart } from '../components/CartContext';
 import { ProductCard } from '../components/ProductCard';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 
-export function ProductDetailPage({ productId, onNavigate }) {
+export function ProductDetailPage() {
   const { addToCart } = useCart();
+  const navigate = useNavigate();
+  const { productId } = useParams();
   const product = getProductById(productId);
   const relatedProducts = getRelatedProducts(productId);
   const [quantity, setQuantity] = useState(1);
@@ -17,13 +20,13 @@ export function ProductDetailPage({ productId, onNavigate }) {
   if (!product) {
     return (
       <div className="min-h-screen bg-[#F3E9E1] flex flex-col">
-        <Header onNavigate={onNavigate} currentPage="product" />
+        <Header />
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center">
             <h2 className="font-heading text-[#5A2D0C] text-3xl mb-4">Product Not Found</h2>
             <button
               type="button"
-              onClick={() => onNavigate('shop')}
+              onClick={() => navigate('/shop')}
               className="bg-[#7A4B2A] hover:bg-[#5A2D0C] text-white px-6 py-3 rounded-lg transition-colors font-medium"
             >
               Back to Shop
@@ -56,13 +59,13 @@ export function ProductDetailPage({ productId, onNavigate }) {
 
   return (
     <div className="min-h-screen bg-[#F3E9E1]">
-      <Header onNavigate={onNavigate} currentPage="product" />
+      <Header />
 
       <div className="container mx-auto px-4 py-8">
         {/* Back Button */}
         <button
           type="button"
-          onClick={() => onNavigate('shop')}
+          onClick={() => navigate(-1)}
           className="mb-6 flex items-center gap-2 text-[#7A4B2A] hover:text-[#5A2D0C] transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -323,7 +326,7 @@ export function ProductDetailPage({ productId, onNavigate }) {
                 <ProductCard
                   key={relatedProduct.id}
                   product={relatedProduct}
-                  onViewDetails={(id) => onNavigate('product', id)}
+                  onViewDetails={(id) => navigate(`/product/${id}`)}
                   onAddToCart={(product) =>
                     addToCart({
                       id: product.id,
@@ -339,7 +342,7 @@ export function ProductDetailPage({ productId, onNavigate }) {
         )}
       </div>
 
-      <Footer onNavigate={onNavigate} />
+      <Footer />
     </div>
   );
 }

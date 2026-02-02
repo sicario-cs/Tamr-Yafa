@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { HomePage } from './pages/home'
 import { ShopPage } from './pages/ShopPage'
 import { CartPage } from './pages/CartPage'
@@ -6,23 +6,24 @@ import { ProductDetailPage } from './pages/ProductDetailPage'
 import { CheckoutPage } from './pages/CheckoutPage'
 
 function App() {
-    const [currentPage, setCurrentPage] = useState('home')
-    const [selectedProductId, setSelectedProductId] = useState(null)
-
-    const handleNavigate = (page, productId) => {
-        if (productId) {
-            setSelectedProductId(productId)
-        }
-        setCurrentPage(page)
-    }
-
     return (
         <div className="min-h-screen">
-            {currentPage === 'home' && <HomePage onNavigate={handleNavigate} />}
-            {currentPage === 'shop' && <ShopPage onNavigate={handleNavigate} />}
-            {currentPage === 'cart' && <CartPage onNavigate={handleNavigate} />}
-            {currentPage === 'product' && <ProductDetailPage productId={selectedProductId} onNavigate={handleNavigate} />}
-            {currentPage === 'checkout' && <CheckoutPage onNavigate={handleNavigate} />}
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/shop" element={<ShopPage />} />
+                <Route path="/cart" element={<CartPage />} />
+                <Route path="/product/:productId" element={<ProductDetailPage />} />
+                <Route path="/checkout" element={<CheckoutPage />} />
+
+                {/* Placeholder routes for future static pages */}
+                <Route path="/gifts" element={<HomePage />} />
+                <Route path="/about" element={<HomePage />} />
+                <Route path="/blog" element={<HomePage />} />
+                <Route path="/contact" element={<HomePage />} />
+
+                {/* Fallback to home for unknown routes */}
+                <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
         </div>
     )
 }

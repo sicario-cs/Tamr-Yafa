@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Trash2, Plus, Minus, ShoppingBag, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { useCart } from '../components/CartContext';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 
-export function CartPage({ onNavigate }) {
+export function CartPage() {
   const { cart, removeFromCart, updateQuantity, getCartTotal } = useCart();
+  const navigate = useNavigate();
   const [promoCode, setPromoCode] = useState('');
   const [discount, setDiscount] = useState(0);
 
@@ -26,7 +28,7 @@ export function CartPage({ onNavigate }) {
   if (cart.length === 0) {
     return (
       <div className="min-h-screen bg-[#F3E9E1] flex flex-col">
-        <Header onNavigate={onNavigate} currentPage="cart" />
+        <Header />
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center max-w-md mx-auto px-4">
             <ShoppingBag className="w-24 h-24 text-[#7A4B2A]/30 mx-auto mb-6" />
@@ -36,21 +38,21 @@ export function CartPage({ onNavigate }) {
             </p>
             <button
               type="button"
-              onClick={() => onNavigate('shop')}
+              onClick={() => navigate('/shop')}
               className="bg-[#7A4B2A] hover:bg-[#5A2D0C] text-white px-8 py-3 rounded-lg transition-colors font-medium"
             >
               Start Shopping
             </button>
           </div>
         </div>
-        <Footer onNavigate={onNavigate} />
+        <Footer />
       </div>
     );
   }
 
   return (
     <div className="min-h-screen bg-[#F3E9E1]">
-      <Header onNavigate={onNavigate} currentPage="cart" />
+      <Header />
       
       {/* Header */}
       <div className="bg-[#5A2D0C] py-12">
@@ -196,7 +198,7 @@ export function CartPage({ onNavigate }) {
 
               <button
                 type="button"
-                onClick={() => onNavigate('checkout')}
+                onClick={() => navigate('/checkout')}
                 className="w-full flex items-center justify-center gap-2 bg-[#7A4B2A] hover:bg-[#5A2D0C] text-white px-6 py-3 rounded-lg transition-colors font-medium mb-4"
               >
                 Proceed to Checkout
@@ -205,7 +207,7 @@ export function CartPage({ onNavigate }) {
 
               <button
                 type="button"
-                onClick={() => onNavigate('shop')}
+                onClick={() => navigate('/shop')}
                 className="w-full py-3 px-6 border-2 border-[#7A4B2A] text-[#7A4B2A] rounded-lg hover:bg-[#7A4B2A] hover:text-white transition-colors font-medium"
               >
                 Continue Shopping
@@ -224,7 +226,7 @@ export function CartPage({ onNavigate }) {
         </div>
       </div>
       
-      <Footer onNavigate={onNavigate} />
+      <Footer />
     </div>
   );
 }
