@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <script>
+      // GitHub Pages serves 404.html for unknown routes. Redirect to / with the original path,
+      // then index.html will restore the URL (see the script in index.html).
+      (function () {
+        const l = window.location;
+        const path = l.pathname;
+        const search = l.search ? l.search.slice(1) : '';
+        const redirectUrl =
+          l.protocol +
+          '//' +
+          l.host +
+          '/?p=' +
+          encodeURIComponent(path) +
+          (search ? '&q=' + encodeURIComponent(search) : '') +
+          l.hash;
+        l.replace(redirectUrl);
+      })();
+    </script>
+  </body>
+</html>
+
