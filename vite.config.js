@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
     // For GitHub Pages with a custom domain (CNAME), keep base as '/'
     // If you deploy to https://<user>.github.io/<repo>/ instead, set base: '/Tamr-Yafa/'
-    base: '/',
+    base: '/Tamr-Yafa/',
     plugins: [
         react({
             babel: {
