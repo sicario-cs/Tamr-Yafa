@@ -16,7 +16,6 @@ export function Header() {
         { label: 'Shop', page: 'shop', path: '/shop' },
         { label: 'Gift Sets', page: 'gifts', path: '/gifts' },
         { label: 'About', page: 'about', path: '/about' },
-        { label: 'Blog', page: 'blog', path: '/blog' },
         { label: 'Contact', page: 'contact', path: '/contact' },
     ];
 

@@ -17,12 +17,23 @@ export function GiftSetsPage() {
   const [giftMessageText, setGiftMessageText] = useState('');
 
   const handleAddToCart = (product) => {
+    const variant =
+      giftWrap || giftMessageEnabled
+        ? {
+            ...(giftWrap ? { giftWrap: true } : {}),
+            ...(giftMessageEnabled ? { giftMessage: true } : {}),
+            ...(giftMessageEnabled && giftMessageText
+              ? { giftNote: giftMessageText }
+              : {}),
+          }
+        : undefined;
+
     addToCart({
       id: product.id,
       name: product.name,
       price: product.price + (giftWrap ? 5 : 0),
       image: product.image,
-      variant: giftWrap ? { giftWrap: true } : undefined,
+      variant,
     });
   };
 

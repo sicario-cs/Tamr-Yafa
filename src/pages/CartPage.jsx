@@ -90,9 +90,15 @@ export function CartPage() {
                       </h3>
                       {item.variant && (
                         <p className="text-sm text-[#7A4B2A]/60 mb-2">
-                          {item.variant.size && `Size: ${item.variant.size}`}
-                          {item.variant.size && item.variant.flavor && ' • '}
-                          {item.variant.flavor && `Flavor: ${item.variant.flavor}`}
+                          {[
+                            item.variant.size && `Size: ${item.variant.size}`,
+                            item.variant.flavor && `Flavor: ${item.variant.flavor}`,
+                            item.variant.giftWrap && 'Gift wrapping',
+                            item.variant.giftMessage && 'Personal message',
+                            item.variant.giftNote && `Note: ${item.variant.giftNote}`,
+                          ]
+                            .filter(Boolean)
+                            .join(' • ')}
                         </p>
                       )}
                       <p className="text-[#5A2D0C] font-medium">₪{item.price}</p>

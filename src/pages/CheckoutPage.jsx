@@ -26,6 +26,18 @@ export function CheckoutPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const formatItemVariant = (variant) => {
+    if (!variant) return '';
+    const parts = [
+      variant.size && `Size: ${variant.size}`,
+      variant.flavor && `Flavor: ${variant.flavor}`,
+      variant.giftWrap && 'Gift wrapping',
+      variant.giftMessage && 'Personal message',
+      variant.giftNote && `Note: ${variant.giftNote}`,
+    ].filter(Boolean);
+    return parts.length ? ` (${parts.join(', ')})` : '';
+  };
+
   const buildWhatsAppOrderMessage = () => {
     const subtotal = getCartTotal();
     const shipping = 8;
@@ -41,7 +53,12 @@ export function CheckoutPage() {
       formData.notes ? `Notes: ${formData.notes}` : null,
       formData.notes ? '' : null,
       '📦 *Items:*',
-      ...cart.map((item) => `• ${item.name} x${item.quantity} — ₪${(item.price * item.quantity).toFixed(2)}`),
+      ...cart.map(
+        (item) =>
+          `• ${item.name}${formatItemVariant(item.variant)} x${item.quantity} — ₪${(
+            item.price * item.quantity
+          ).toFixed(2)}`
+      ),
       '',
       `💰 Subtotal: ₪${subtotal.toFixed(2)}`,
       `🚚 Shipping: ₪${shipping.toFixed(2)}`,
@@ -327,6 +344,19 @@ export function CheckoutPage() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm text-[#5A2D0C] truncate">{item.name}</p>
+                      {item.variant && (
+                        <p className="text-[11px] text-[#7A4B2A]/60 truncate">
+                          {[
+                            item.variant.size && `Size: ${item.variant.size}`,
+                            item.variant.flavor && `Flavor: ${item.variant.flavor}`,
+                            item.variant.giftWrap && 'Gift wrapping',
+                            item.variant.giftMessage && 'Personal message',
+                            item.variant.giftNote && `Note: ${item.variant.giftNote}`,
+                          ]
+                            .filter(Boolean)
+                            .join(' • ')}
+                        </p>
+                      )}
                       <p className="text-xs text-[#7A4B2A]/60">Qty: {item.quantity}</p>
                     </div>
                     <p className="text-sm text-[#5A2D0C] font-medium">

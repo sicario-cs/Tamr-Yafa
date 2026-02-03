@@ -7,7 +7,7 @@ import { ProductCard } from '../components/ProductCard';
 import { useCart } from '../components/CartContext.jsx';
 import { getFeaturedProducts } from '../products-data.js';
 import homePageImage from '../assets/HomePageImage.png';
-
+import palestinianCollectionImage from '../assets/ProductsImage/palestineFlage.jpeg';
 export function HomePage() {
     const [newsletterEmail, setNewsletterEmail] = useState('');
     const { addToCart } = useCart();
@@ -159,8 +159,8 @@ export function HomePage() {
                         </div>
                         <div className="relative h-[400px] rounded-lg overflow-hidden">
                             <img
-                                src="https://images.unsplash.com/photo-1629610306962-a8aa73153d0e?w=800&q=80"
-                                alt="Gift boxes"
+                                src={palestinianCollectionImage}
+                                alt="palestinian Collection Gift Box"
                                 className="w-full h-full object-cover"
                             />
                         </div>

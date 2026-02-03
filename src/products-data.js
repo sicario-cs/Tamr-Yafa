@@ -1,7 +1,10 @@
 import dubaiChocolateImage from './assets/ProductsImage/DubaiChocolate.jpeg';
 import chocolateTamrImage from './assets/ProductsImage/chocolateTamr.jpeg';
 import asafeeriQatayefImage from './assets/ProductsImage/qatayf.png';
-
+import palestinianCollectionImage from './assets/ProductsImage/palestineFlage.jpeg';
+import babyBoyGiftBoxImage from './assets/ProductsImage/babyBoy.jpeg';
+import babyGirlGiftBoxImage from './assets/ProductsImage/babyGirl.jpeg';
+import eidAlAdhaCollectionImage from './assets/ProductsImage/eidAlAdha.jpeg';
 export const products = [
     {
         id: 'chocolate-dates',
@@ -48,77 +51,53 @@ export const products = [
         relatedProducts: ['chocolate-dates'],
     },
     {
-        id: 'bar-85-percent',
-        name: '85% Intense Dark Bar',
-        price: 8,
-        description: 'For true dark chocolate lovers. Intense, bold, and beautifully bitter with subtle fruit notes.',
-        image: 'https://images.unsplash.com/photo-1646168932800-e48f378d37bb?w=1080&q=80',
-        category: 'bars',
-        cacaoPercent: 85,
-        highlights: ['85% cacao', 'Vegan', 'No refined sugar'],
-        ingredients: 'Cacao mass, coconut sugar, cocoa butter',
-        nutrition: 'Per 30g: 180 kcal, 14g fat, 10g carbs, 3g protein',
-        available: true,
-        variants: { sizes: ['60g', '100g'] },
-        relatedProducts: ['Dubai Chocolate'],
-    },
-    {
-        id: 'truffle-milk-1',
-        name: 'Creamy Milk Chocolate Truffles',
-        price: 22,
-        description: 'Smooth and velvety milk chocolate truffles with a hint of Madagascar vanilla.',
-        image: 'https://images.unsplash.com/photo-1715663760594-5250f3261fb7?w=1080&q=80',
-        category: 'truffles',
-        highlights: ['38% cacao', 'Madagascar vanilla', 'Box of 12'],
-        available: true,
-        relatedProducts: ['chocolate-dates'],
-    },
-    {
-        id: 'bar-milk-caramel',
-        name: 'Milk Chocolate with Sea Salt Caramel',
-        price: 8,
-        description: 'Creamy milk chocolate infused with ribbons of salted caramel.',
-        image: 'https://images.unsplash.com/photo-1646168932800-e48f378d37bb?w=1080&q=80',
-        category: 'bars',
-        cacaoPercent: 38,
-        highlights: ['Salted caramel', 'Creamy texture', 'Award-winning'],
+        id: 'eid-al-adha-collection',
+        name: 'Eid al-Adha Collection',
+        price: 55,
+        description: 'A special Eid al-Adha gift box filled with mixed chocolates and decorated in a festive Eid theme. Perfect for family visits and celebrations.',
+        image: eidAlAdhaCollectionImage,
+        category: 'gift-sets',
+        highlights: ['Eid al-Adha design', 'Mixed chocolates', 'Perfect for gifting'],
         available: true,
         relatedProducts: ['Dubai Chocolate'],
     },
+    
     {
         id: 'gift-classics',
-        name: 'Classic Collection Gift Box',
-        price: 35,
-        description: 'A curated selection of our signature bars and truffles. Perfect introduction to Tamr Yafa.',
-        image: 'https://images.unsplash.com/photo-1629610306962-a8aa73153d0e?w=1080&q=80',
+        name: 'Palestinian Collection Gift Box',
+        price: 75,
+        description: 'Signature Palestinian-inspired collection with chocolate-covered dates and pralines, decorated in the colors and style of Palestine.',
+        image: palestinianCollectionImage,
         category: 'gift-sets',
-        highlights: ['8 pieces', 'Variety of flavors', 'Beautiful packaging'],
+        highlights: ['Palestine design', 'Chocolate dates & pralines', 'Gift-ready box'],
         available: true,
-        relatedProducts: ['gift-premium'],
+        relatedProducts: ['gift-baby-boy', 'gift-baby-girl'],
     },
     {
-        id: 'gift-premium',
-        name: 'Premium Artisan Collection',
-        price: 65,
-        description: 'Our finest chocolates in an exquisite presentation box. Includes rare single-origin varieties.',
-        image: 'https://images.unsplash.com/photo-1629610306962-a8aa73153d0e?w=1080&q=80',
+        id: 'gift-baby-boy',
+        name: 'Baby Boy Gift Box',
+        price: 85,
+        description: 'Blue-themed baby boy gift box with assorted chocolates, perfect for baby showers and first visits.',
+        image: babyBoyGiftBoxImage,
         category: 'gift-sets',
-        highlights: ['16 pieces', 'Premium selection', 'Luxury packaging', 'Tasting guide included'],
+        highlights: ['Baby boy theme', 'Assorted chocolates', 'Keepsake-style box'],
         available: true,
         featured: false,
         relatedProducts: ['gift-classics'],
     },
     {
-        id: 'seasonal-valentine',
-        name: "Valentine's Heart Box",
-        price: 38,
-        description: 'Heart-shaped box filled with romantic chocolate truffles and pralines.',
-        image: 'https://images.unsplash.com/photo-1629610306962-a8aa73153d0e?w=1080&q=80',
-        category: 'seasonal',
-        highlights: ['Limited edition', 'Heart-shaped box', '10 pieces'],
+        id: 'gift-baby-girl',
+        name: 'Baby Girl Gift Box',
+        price: 85,
+        description: 'Pink-themed baby girl gift box with assorted chocolates, perfect for baby showers and first visits.',
+        image: babyGirlGiftBoxImage,
+        category: 'gift-sets',
+        highlights: ['Baby girl theme', 'Assorted chocolates', 'Keepsake-style box'],
         available: true,
+        featured: false,
         relatedProducts: ['gift-classics'],
     },
+    
 ];
 
 export function getProductById(id) {

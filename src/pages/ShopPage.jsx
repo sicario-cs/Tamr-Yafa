@@ -12,7 +12,6 @@ export function ShopPage() {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [priceRange, setPriceRange] = useState([0, 100]);
-  const [cacaoFilter, setCacaoFilter] = useState('all');
   const [showFilters, setShowFilters] = useState(false);
 
   const filteredProducts = products.filter((product) => {
@@ -24,16 +23,6 @@ export function ShopPage() {
     // Price filter
     if (product.price < priceRange[0] || product.price > priceRange[1]) {
       return false;
-    }
-
-    // Cacao % filter
-    if (cacaoFilter !== 'all') {
-      if (cacaoFilter === 'dark' && (!product.cacaoPercent || product.cacaoPercent < 60)) {
-        return false;
-      }
-      if (cacaoFilter === 'milk' && product.cacaoPercent && product.cacaoPercent >= 60) {
-        return false;
-      }
     }
 
     return true;
@@ -51,7 +40,6 @@ export function ShopPage() {
   const clearFilters = () => {
     setSelectedCategory('all');
     setPriceRange([0, 100]);
-    setCacaoFilter('all');
   };
 
   return (
@@ -90,7 +78,6 @@ export function ShopPage() {
                   {[
                     { value: 'all', label: 'All Products' },
                     { value: 'bars', label: 'Chocolate Bars' },
-                    { value: 'truffles', label: 'Truffles' },
                     { value: 'gift-sets', label: 'Gift Sets' },
                     { value: 'seasonal', label: 'Seasonal' },
                   ].map((cat) => (
@@ -108,21 +95,6 @@ export function ShopPage() {
                     </button>
                   ))}
                 </div>
-              </div>
-
-              <div className="border-t border-[#7A4B2A]/20 pt-6">
-                <h3 className="font-heading text-[#5A2D0C] mb-4">Cacao %</h3>
-                <select
-                  id="cacaoFilter"
-                  name="cacaoFilter"
-                  value={cacaoFilter}
-                  onChange={(e) => setCacaoFilter(e.target.value)}
-                  className="w-full px-3 py-2 rounded-lg bg-[#F3E9E1] border border-[#7A4B2A]/20 text-[#5A2D0C] outline-none focus:ring-2 focus:ring-[#7A4B2A]/30"
-                >
-                  <option value="all">All Types</option>
-                  <option value="dark">Dark (60%+)</option>
-                  <option value="milk">Milk (below 60%)</option>
-                </select>
               </div>
 
               <div className="border-t border-[#7A4B2A]/20 pt-6">
