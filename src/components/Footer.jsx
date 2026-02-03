@@ -93,15 +93,7 @@ export function Footer() {
                                     About Us
                                 </button>
                             </li>
-                            <li>
-                                <button
-                                    type="button"
-                                    onClick={() => navigate('/blog')}
-                                    className="text-[#F3E9E1]/80 hover:text-[#B8860B] transition-colors text-sm"
-                                >
-                                    Blog & Recipes
-                                </button>
-                            </li>
+                            
                             <li>
                                 <button
                                     type="button"

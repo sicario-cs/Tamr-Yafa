@@ -17,6 +17,16 @@ export function ProductDetailPage() {
   const [selectedVariant, setSelectedVariant] = useState({});
   const [activeTab, setActiveTab] = useState('description');
 
+  const getCurrentPrice = () => {
+    if (product.variants && product.variants.sizePrices && selectedVariant.size) {
+      const variantPrice = product.variants.sizePrices[selectedVariant.size];
+      if (typeof variantPrice === 'number') {
+        return variantPrice;
+      }
+    }
+    return product.price;
+  };
+
   if (!product) {
     return (
       <div className="min-h-screen bg-[#F3E9E1] flex flex-col">
@@ -43,7 +53,7 @@ export function ProductDetailPage() {
       addToCart({
         id: product.id,
         name: product.name,
-        price: product.price,
+        price: getCurrentPrice(),
         image: product.image,
         variant: Object.keys(selectedVariant).length > 0 ? selectedVariant : undefined,
       });
@@ -142,7 +152,7 @@ export function ProductDetailPage() {
             </div>
 
             <div className="text-4xl font-heading text-[#5A2D0C] mb-6">
-              ₪{product.price}
+              ₪{getCurrentPrice()}
             </div>
 
             {/* Variants */}

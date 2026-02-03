@@ -40,7 +40,7 @@ export function CheckoutPage() {
 
   const buildWhatsAppOrderMessage = () => {
     const subtotal = getCartTotal();
-    const shipping = 8;
+    const shipping = 20;
     const total = subtotal + shipping;
     const lines = [
       '🛒 *New Order - Tamr Yafa*',
@@ -77,7 +77,7 @@ export function CheckoutPage() {
   };
 
   const subtotal = getCartTotal();
-  const shipping = 8;
+  const shipping = 20;
   const total = subtotal + shipping;
 
   if (cart.length === 0 && !orderComplete) {
