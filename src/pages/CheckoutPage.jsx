@@ -336,6 +336,7 @@ export function CheckoutPage() {
                       <img
                         src={item.image}
                         alt={item.name}
+                        loading="lazy"
                         className="w-full h-full object-cover"
                         onError={(e) => {
                           e.target.style.display = 'none';

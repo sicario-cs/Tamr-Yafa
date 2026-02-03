@@ -4,7 +4,7 @@ import asafeeriQatayefImage from './assets/ProductsImage/qatayf.png';
 import palestinianCollectionImage from './assets/ProductsImage/palestineFlage.jpeg';
 import babyBoyGiftBoxImage from './assets/ProductsImage/babyBoy.jpeg';
 import babyGirlGiftBoxImage from './assets/ProductsImage/babyGirl.jpeg';
-import eidAlAdhaCollectionImage from './assets/ProductsImage/eidAlAdha.jpeg';
+import eidAlAdhaCollectionImage from './assets/ProductsImage/eidAladha.jpeg';
 export const products = [
     {
         id: 'chocolate-dates',
