@@ -8,7 +8,18 @@ import { Footer } from '../components/Footer';
 export function CartPage() {
   const { cart, removeFromCart, updateQuantity, getCartTotal } = useCart();
   const navigate = useNavigate();
+  const [promoCode, setPromoCode] = useState('');
+  const [discount, setDiscount] = useState(0);
 
+  const handleApplyPromo = () => {
+    if (promoCode.toUpperCase() === 'WELCOME10') {
+      setDiscount(getCartTotal() * 0.1);
+    } else if (promoCode.toUpperCase() === 'AURORA15') {
+      setDiscount(getCartTotal() * 0.15);
+    } else {
+      alert('Invalid promo code');
+    }
+  };
 
   const subtotal = getCartTotal();
   const shipping = 20;
@@ -166,7 +177,33 @@ export function CartPage() {
                 </div>
               </div>
 
-              
+              {/* Promo Code */}
+              <div className="mb-6">
+                <label htmlFor="promoCode" className="block text-[#5A2D0C] text-sm mb-2">
+                  Promo Code
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    id="promoCode"
+                    name="promoCode"
+                    type="text"
+                    value={promoCode}
+                    onChange={(e) => setPromoCode(e.target.value)}
+                    placeholder="Enter code"
+                    className="flex-1 px-3 py-2 rounded-lg bg-[#F3E9E1] border border-[#7A4B2A]/20 text-[#5A2D0C] outline-none focus:ring-2 focus:ring-[#7A4B2A]/30"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleApplyPromo}
+                    className="px-4 py-2 border-2 border-[#7A4B2A] text-[#7A4B2A] rounded-lg hover:bg-[#7A4B2A] hover:text-white transition-colors font-medium"
+                  >
+                    Apply
+                  </button>
+                </div>
+                <p className="text-xs text-[#7A4B2A]/60 mt-2">
+                  Try: WELCOME10 or AURORA15
+                </p>
+              </div>
 
               <button
                 type="button"

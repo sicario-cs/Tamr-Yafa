@@ -5,7 +5,7 @@ import { useCart } from '../components/CartContext';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 
-// Shop owner WhatsApp number (with country code, no + or spaces). Example: 970599123456
+// Shop owner WhatsApp number (with country code, no + or spaces).
 const SHOP_WHATSAPP_NUMBER = '972599987735';
 
 export function CheckoutPage() {
