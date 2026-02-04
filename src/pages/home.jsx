@@ -34,11 +34,11 @@ export function HomePage() {
             <Header />
             {/* Hero Section */}
             <section className="relative h-[600px] md:h-[700px] flex items-center">
-                <div className="absolute inset-0">
+                <div className="absolute inset-0 overflow-hidden">
                     <img
                         src={chocolateTamrImage}
                         alt="Artisan chocolates"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover lg:w-[115%] lg:h-[115%] lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:object-center"
                     />
                     <div className="absolute inset-0 bg-linear-to-r from-[#5A2D0C]/90 to-[#5A2D0C]/40" />
                 </div>

@@ -4,7 +4,7 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 
 
-const SHOP_WHATSAPP_NUMBER = '970597622752';
+const SHOP_WHATSAPP_NUMBER = '972599987735';
 
 export function ContactPage() {
   const [formData, setFormData] = useState({

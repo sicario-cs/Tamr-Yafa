@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Package } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { ProductCard } from '../components/ProductCard';
-import { getProductsByCategory } from '../products-data';
+import { getProductsByCategory, eidAlAdhaCollectionImage } from '../products-data';
 import { useCart } from '../components/CartContext';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-
 export function GiftSetsPage() {
   const navigate = useNavigate();
   const { addToCart } = useCart();
@@ -29,9 +28,9 @@ export function GiftSetsPage() {
       <div className="relative h-[420px] flex items-center">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1629610306962-a8aa73153d0e?w=1600&q=80"
+            src={eidAlAdhaCollectionImage}
             alt="Gift sets"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-[#5A2D0C]/70" />
         </div>

@@ -1,4 +1,3 @@
-import dubaiChocolateImage from './assets/ProductsImage/DubaiChocolate.jpeg';
 import chocolateTamrImage from './assets/ProductsImage/chocolateTamr.jpeg';
 import asafeeriQatayefImage from './assets/ProductsImage/qatayf.png';
 import palestinianCollectionImage from './assets/ProductsImage/palestineFlage.jpeg';
@@ -181,3 +180,5 @@ export function getProductsByCategory(category) {
     if (category === 'all') return products;
     return products.filter((p) => p.category === category);
 }
+
+    export { eidAlAdhaCollectionImage };
