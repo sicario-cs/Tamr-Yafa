@@ -2,19 +2,27 @@ import React, { useState } from 'react';
 import { Facebook, Instagram, Twitter, Mail, MapPin, Phone } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { ShippingInfoDialog } from './ShippingInfoDialog.jsx';
+import { useTranslation } from 'react-i18next';
 
 export function Footer() {
     const navigate = useNavigate();
     const [isShippingOpen, setIsShippingOpen] = useState(false);
+    const { t } = useTranslation();
+    const year = new Date().getFullYear();
+
+    const addressLines = t('footer.address').split('\\n');
+
     return (
         <footer className="bg-[#5A2D0C] text-[#F3E9E1] mt-20">
             <div className="container mx-auto px-4 py-12">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {/* About */}
                     <div>
-                        <h3 className="font-heading text-[#B8860B] mb-4">Tamr Yafa</h3>
+                        <h3 className="font-heading text-[#B8860B] mb-4">
+                            {t('footer.aboutTitle')}
+                        </h3>
                         <p className="text-[#F3E9E1]/80 text-sm mb-4">
-                            Dates stuffed with nuts and covered in chocolate. Designed with decorations and colors suited for all occasions.
+                            {t('footer.aboutBody')}
                         </p>
                         <div className="flex gap-4">
                             <a
@@ -45,7 +53,9 @@ export function Footer() {
 
                     {/* Shop */}
                     <div>
-                        <h4 className="font-heading text-[#B8860B] mb-4">Shop</h4>
+                        <h4 className="font-heading text-[#B8860B] mb-4">
+                            {t('footer.shopTitle')}
+                        </h4>
                         <ul className="space-y-2">
                             <li>
                                 <button
@@ -53,7 +63,7 @@ export function Footer() {
                                     onClick={() => navigate('/shop')}
                                     className="text-[#F3E9E1]/80 hover:text-[#B8860B] transition-colors text-sm"
                                 >
-                                    All Products
+                                {t('footer.allProducts')}
                                 </button>
                             </li>
                             
@@ -66,7 +76,7 @@ export function Footer() {
                                     onClick={() => navigate('/gifts')}
                                     className="text-[#F3E9E1]/80 hover:text-[#B8860B] transition-colors text-sm"
                                 >
-                                    Gift Sets
+                                    {t('footer.giftSets')}
                                 </button>
                             </li>
                         </ul>
@@ -74,7 +84,9 @@ export function Footer() {
 
                     {/* Company */}
                     <div>
-                        <h4 className="font-heading text-[#B8860B] mb-4">Company</h4>
+                        <h4 className="font-heading text-[#B8860B] mb-4">
+                            {t('footer.companyTitle')}
+                        </h4>
                         <ul className="space-y-2">
                             <li>
                                 <button
@@ -82,7 +94,7 @@ export function Footer() {
                                     onClick={() => navigate('/about')}
                                     className="text-[#F3E9E1]/80 hover:text-[#B8860B] transition-colors text-sm"
                                 >
-                                    About Us
+                                    {t('footer.aboutUs')}
                                 </button>
                             </li>
                             
@@ -92,12 +104,12 @@ export function Footer() {
                                     onClick={() => navigate('/contact')}
                                     className="text-[#F3E9E1]/80 hover:text-[#B8860B] transition-colors text-sm"
                                 >
-                                    Contact
+                                    {t('footer.contact')}
                                 </button>
                             </li>
                             <li>
                                 <button type="button" className="text-[#F3E9E1]/80 hover:text-[#B8860B] transition-colors text-sm">
-                                    Wholesale
+                                    {t('footer.wholesale')}
                                 </button>
                             </li>
                         </ul>
@@ -105,20 +117,28 @@ export function Footer() {
 
                     {/* Contact */}
                     <div>
-                        <h4 className="font-heading text-[#B8860B] mb-4">Contact</h4>
+                        <h4 className="font-heading text-[#B8860B] mb-4">
+                            {t('footer.contactTitle')}
+                        </h4>
                         <ul className="space-y-3">
                             <li className="flex items-start gap-2 text-sm text-[#F3E9E1]/80">
                                 <MapPin className="w-4 h-4 mt-0.5 shrink-0" />
-                                <span>west bank<br />Ramallah, Al Bireh
+                                <span>
+                                    {addressLines.map((line, idx) => (
+                                        <span key={idx}>
+                                            {line}
+                                            <br />
+                                        </span>
+                                    ))}
                                 </span>
                             </li>
                             <li className="flex items-center gap-2 text-sm text-[#F3E9E1]/80">
                                 <Phone className="w-4 h-4 shrink-0" />
-                                <span>(+970) ##########</span>
+                                <span>{t('footer.phone')}</span>
                             </li>
                             <li className="flex items-center gap-2 text-sm text-[#F3E9E1]/80">
                                 <Mail className="w-4 h-4 shrink-0" />
-                                <span>yafatamr@gmail.com</span>
+                                <span>{t('footer.email')}</span>
                             </li>
                         </ul>
                     </div>
@@ -126,17 +146,21 @@ export function Footer() {
 
                 <div className="border-t border-[#F3E9E1]/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-[#F3E9E1]/60 text-sm">
-                        © {new Date().getFullYear()} Tamr Yafa. All rights reserved.
+                        {t('footer.rights', { year })}
                     </p>
                     <div className="flex gap-6 text-sm text-[#F3E9E1]/60">
-                        <button type="button" className="hover:text-[#B8860B] transition-colors">Privacy Policy</button>
-                        <button type="button" className="hover:text-[#B8860B] transition-colors">Terms of Service</button>
+                        <button type="button" className="hover:text-[#B8860B] transition-colors">
+                            {t('footer.privacy')}
+                        </button>
+                        <button type="button" className="hover:text-[#B8860B] transition-colors">
+                            {t('footer.terms')}
+                        </button>
                         <button
                             type="button"
                             className="hover:text-[#B8860B] transition-colors"
                             onClick={() => setIsShippingOpen(true)}
                         >
-                            Shipping Info
+                            {t('footer.shippingInfo')}
                         </button>
                     </div>
                 </div>

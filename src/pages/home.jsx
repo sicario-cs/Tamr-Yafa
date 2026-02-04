@@ -6,17 +6,19 @@ import { Footer } from '../components/Footer';
 import { ProductCard } from '../components/ProductCard';
 import { useCart } from '../components/CartContext.jsx';
 import { getFeaturedProducts } from '../products-data.js';
-import homePageImage from '../assets/HomePageImage.png';
 import chocolateTamrImage from '../assets/ProductsImage/chocolateTamr.jpeg';
 import palestinianCollectionImage from '../assets/ProductsImage/palestineFlage.jpeg';
+import { useTranslation } from 'react-i18next';
+
 export function HomePage() {
     const [newsletterEmail, setNewsletterEmail] = useState('');
     const { addToCart } = useCart();
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const handleNewsletterSubmit = (e) => {
         e.preventDefault();
-        alert('Thank you for subscribing!');
+        alert(t('home.newsletterSuccess'));
         setNewsletterEmail('');
     };
 
@@ -46,20 +48,20 @@ export function HomePage() {
                 <div className="container mx-auto px-4 relative z-10">
                     <div className="max-w-2xl">
                         <h1 className="font-heading text-[#F3E9E1] text-5xl md:text-6xl lg:text-7xl mb-6">
-                            Taste the Story
+                            {t('home.heroTitle')}
                         </h1>
                         <p className="text-[#F3E9E1] text-xl md:text-2xl mb-4">
-                            Handcrafted Dates Stuffed with Nuts & Chocolate
+                            {t('home.heroSubtitle')}
                         </p>
                         <p className="text-[#F3E9E1]/90 text-lg mb-8">
-                            Dates stuffed with nuts, covered in chocolate, and beautifully wrapped for every occasion.
+                            {t('home.heroBody')}
                         </p>
                         <button
                             type="button"
                             onClick={() => navigate('/shop')}
                             className="inline-flex items-center gap-2 bg-[#B8860B] hover:bg-[#B8860B]/90 text-white font-medium py-3 px-6 rounded-lg transition-colors"
                         >
-                            Shop Now
+                            {t('buttons.shopNow')}
                             <ArrowRight className="w-5 h-5" />
                         </button>
                     </div>
@@ -74,9 +76,11 @@ export function HomePage() {
                             <div className="w-16 h-16 bg-[#7FB069]/10 rounded-full flex items-center justify-center mx-auto mb-4 text-[#7FB069]">
                                 <Leaf className="w-8 h-8" />
                             </div>
-                            <h3 className="font-heading text-[#5A2D0C] mb-2">Sustainably Sourced</h3>
+                            <h3 className="font-heading text-[#5A2D0C] mb-2">
+                                {t('home.features.sustainableTitle')}
+                            </h3>
                             <p className="text-[#7A4B2A]/70">
-                                We work directly with cacao farmers to ensure fair trade and quality.
+                                {t('home.features.sustainableBody')}
                             </p>
                         </div>
 
@@ -84,9 +88,11 @@ export function HomePage() {
                             <div className="w-16 h-16 bg-[#B8860B]/10 rounded-full flex items-center justify-center mx-auto mb-4 text-[#B8860B]">
                                 <Award className="w-8 h-8" />
                             </div>
-                            <h3 className="font-heading text-[#5A2D0C] mb-2">Award-Winning Quality</h3>
+                            <h3 className="font-heading text-[#5A2D0C] mb-2">
+                                {t('home.features.awardTitle')}
+                            </h3>
                             <p className="text-[#7A4B2A]/70">
-                                Recognized internationally for our exceptional craft and flavor.
+                                {t('home.features.awardBody')}
                             </p>
                         </div>
 
@@ -94,9 +100,11 @@ export function HomePage() {
                             <div className="w-16 h-16 bg-[#7A4B2A]/10 rounded-full flex items-center justify-center mx-auto mb-4 text-[#7A4B2A]">
                                 <Heart className="w-8 h-8" />
                             </div>
-                            <h3 className="font-heading text-[#5A2D0C] mb-2">Handcrafted with Love</h3>
+                            <h3 className="font-heading text-[#5A2D0C] mb-2">
+                                {t('home.features.handcraftedTitle')}
+                            </h3>
                             <p className="text-[#7A4B2A]/70">
-                                Every piece is carefully made by our master chocolatiers.
+                                {t('home.features.handcraftedBody')}
                             </p>
                         </div>
                     </div>
@@ -108,10 +116,10 @@ export function HomePage() {
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-12">
                         <h2 className="font-heading text-[#5A2D0C] text-4xl mb-4">
-                            Our Signature Collection
+                            {t('home.signatureTitle')}
                         </h2>
                         <p className="text-[#7A4B2A] text-lg max-w-2xl mx-auto">
-                            Discover our most beloved creations, each one a testament to quality and craftsmanship.
+                            {t('home.signatureBody')}
                         </p>
                     </div>
 
@@ -132,7 +140,7 @@ export function HomePage() {
                             onClick={() => navigate('/shop')}
                             className="py-3 px-6 border-2 border-[#7A4B2A] text-[#7A4B2A] rounded-lg hover:bg-[#7A4B2A] hover:text-white font-medium transition-colors"
                         >
-                            View All Products
+                            {t('buttons.viewAllProducts')}
                         </button>
                     </div>
                 </div>
@@ -144,17 +152,17 @@ export function HomePage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                         <div>
                             <h2 className="font-heading text-[#F3E9E1] text-4xl mb-4">
-                                Perfect Gifts for Every Occasion
+                                {t('home.giftsTitle')}
                             </h2>
                             <p className="text-[#F3E9E1]/90 text-lg mb-6">
-                                Our beautifully curated gift sets are perfect for celebrations, thank you gifts, or simply treating someone special.
+                                {t('home.giftsBody')}
                             </p>
                             <button
                             type="button"
                             onClick={() => navigate('/gifts')}
                                 className="inline-flex items-center gap-2 bg-[#B8860B] hover:bg-[#B8860B]/90 text-white font-medium py-3 px-6 rounded-lg transition-colors"
                             >
-                                Explore Gift Sets
+                                {t('buttons.exploreGiftSets')}
                                 <ArrowRight className="w-5 h-5" />
                             </button>
                         </div>
@@ -173,10 +181,10 @@ export function HomePage() {
             <section className="py-16 bg-white">
                 <div className="container mx-auto px-4 max-w-2xl text-center">
                     <h2 className="font-heading text-[#5A2D0C] text-4xl mb-4">
-                        Join Our Chocolate Journey
+                        {t('home.newsletterTitle')}
                     </h2>
                     <p className="text-[#7A4B2A] mb-8">
-                        Subscribe to get recipes, pairing tips, and exclusive offers delivered to your inbox.
+                        {t('home.newsletterBody')}
                     </p>
 
                     <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4">
@@ -184,7 +192,7 @@ export function HomePage() {
                             id="newsletterEmail"
                             name="newsletterEmail"
                             type="email"
-                            placeholder="Enter your email"
+                            placeholder={t('home.newsletterPlaceholder')}
                             value={newsletterEmail}
                             onChange={(e) => setNewsletterEmail(e.target.value)}
                             required
@@ -194,7 +202,7 @@ export function HomePage() {
                             type="submit"
                             className="py-3 px-6 bg-[#7A4B2A] hover:bg-[#5A2D0C] text-white font-medium rounded-lg transition-colors"
                         >
-                            Subscribe
+                            {t('buttons.subscribe')}
                         </button>
                     </form>
                 </div>

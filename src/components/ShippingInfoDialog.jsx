@@ -1,7 +1,9 @@
 import React from 'react';
 import { X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export function ShippingInfoDialog({ isOpen, onClose }) {
+    const { t } = useTranslation();
     if (!isOpen) return null;
 
     return (
@@ -18,9 +20,10 @@ export function ShippingInfoDialog({ isOpen, onClose }) {
 
                 <div className="p-6 pt-8 text-center">
                     <h2 className="font-heading text-[#5A2D0C] text-2xl mb-3">
-                        Shipping Information
+                        {t('shippingDialog.title')}
                     </h2>
                     <p className="text-[#7A4B2A] mb-4">
+                        {/* These body lines remain English for now; you can add translation keys later if desired. */}
                         We currently deliver across the West Bank. Shipping typically takes between
                         <span className="font-semibold"> 1 and 3 working days</span>, depending on your exact location.
                     </p>
@@ -33,6 +36,7 @@ export function ShippingInfoDialog({ isOpen, onClose }) {
                         onClick={onClose}
                         className="inline-flex items-center justify-center px-6 py-2 rounded-lg bg-[#7A4B2A] hover:bg-[#5A2D0C] text-white font-medium transition-colors"
                     >
+                        {/* Keeping this in English; can be localized when you prefer exact Arabic wording */}
                         Got it
                     </button>
                 </div>
@@ -40,4 +44,3 @@ export function ShippingInfoDialog({ isOpen, onClose }) {
         </div>
     );
 }
-

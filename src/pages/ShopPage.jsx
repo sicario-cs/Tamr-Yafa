@@ -6,6 +6,7 @@ import { products } from '../products-data';
 import { useCart } from '../components/CartContext';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
+import { useTranslation } from 'react-i18next';
 
 export function ShopPage() {
   const { addToCart } = useCart();
@@ -13,6 +14,7 @@ export function ShopPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [priceRange, setPriceRange] = useState([0, 100]);
   const [showFilters, setShowFilters] = useState(false);
+  const { t } = useTranslation();
 
   const filteredProducts = products.filter((product) => {
     // Category filter
@@ -49,9 +51,11 @@ export function ShopPage() {
       {/* Header */}
       <div className="bg-[#5A2D0C] py-16">
         <div className="container mx-auto px-4">
-          <h1 className="font-heading text-[#F3E9E1] text-5xl mb-4">Shop All Chocolates</h1>
+          <h1 className="font-heading text-[#F3E9E1] text-5xl mb-4">
+            {t('shop.title')}
+          </h1>
           <p className="text-[#F3E9E1]/80 text-lg max-w-2xl">
-            Explore our complete collection of handcrafted chocolates, from bold dark bars to elegant truffles.
+            {t('shop.subtitle')}
           </p>
         </div>
       </div>
@@ -67,19 +71,21 @@ export function ShopPage() {
                 className="w-full flex items-center justify-center gap-2 py-2 px-4 border-2 border-[#7A4B2A] text-[#7A4B2A] rounded-lg hover:bg-[#7A4B2A] hover:text-white transition-colors font-medium"
               >
                 <Filter className="w-4 h-4" />
-                {showFilters ? 'Hide Filters' : 'Show Filters'}
+                {showFilters ? t('shop.filters.hideFilters') : t('shop.filters.showFilters')}
               </button>
             </div>
 
             <div className={`bg-white rounded-lg p-6 space-y-6 ${showFilters ? 'block' : 'hidden lg:block'}`}>
               <div>
-                <h3 className="font-heading text-[#5A2D0C] mb-4">Category</h3>
+                <h3 className="font-heading text-[#5A2D0C] mb-4">
+                  {t('shop.filters.category')}
+                </h3>
                 <div className="space-y-2">
                   {[
-                    { value: 'all', label: 'All Products' },
-                    { value: 'bars', label: 'Chocolate Bars' },
-                    { value: 'gift-sets', label: 'Gift Sets' },
-                    { value: 'seasonal', label: 'Seasonal' },
+                    { value: 'all', label: t('shop.filters.allProducts') },
+                    { value: 'bars', label: t('shop.filters.bars') },
+                    { value: 'gift-sets', label: t('shop.filters.giftSets') },
+                    { value: 'seasonal', label: t('shop.filters.seasonal') },
                   ].map((cat) => (
                     <button
                       key={cat.value}
@@ -99,7 +105,10 @@ export function ShopPage() {
 
               <div className="border-t border-[#7A4B2A]/20 pt-6">
                 <h3 className="font-heading text-[#5A2D0C] mb-4">
-                  Price Range: ₪{priceRange[0]} - ₪{priceRange[1]}
+                  {t('shop.filters.priceRange', {
+                    min: priceRange[0],
+                    max: priceRange[1],
+                  })}
                 </h3>
                 <div className="space-y-2">
                   <input
@@ -143,7 +152,7 @@ export function ShopPage() {
                 onClick={clearFilters}
                 className="w-full py-2 px-4 border-2 border-[#7A4B2A] text-[#7A4B2A] rounded-lg hover:bg-[#7A4B2A] hover:text-white transition-colors font-medium"
               >
-                Clear All Filters
+                {t('buttons.clearFilters')}
               </button>
             </div>
           </div>
@@ -152,7 +161,13 @@ export function ShopPage() {
           <div className="flex-1">
             <div className="flex items-center justify-between mb-6">
               <p className="text-[#7A4B2A]">
-                Showing {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'}
+                {t('shop.results.showing', {
+                  count: filteredProducts.length,
+                  itemLabel:
+                    filteredProducts.length === 1
+                      ? t('shop.results.product')
+                      : t('shop.results.products'),
+                })}
               </p>
             </div>
 
@@ -169,13 +184,15 @@ export function ShopPage() {
               </div>
             ) : (
               <div className="text-center py-12 bg-white rounded-lg">
-                <p className="text-[#7A4B2A] mb-4">No products match your filters.</p>
+                <p className="text-[#7A4B2A] mb-4">
+                  {t('shop.results.noResults')}
+                </p>
                 <button
                   type="button"
                   onClick={clearFilters}
                   className="bg-[#7A4B2A] hover:bg-[#5A2D0C] text-white px-6 py-2 rounded-lg transition-colors font-medium"
                 >
-                  Clear Filters
+                  {t('buttons.clearFilters')}
                 </button>
               </div>
             )}

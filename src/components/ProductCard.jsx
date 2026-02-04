@@ -1,8 +1,24 @@
 import React from 'react';
 import { ShoppingCart } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+
+const PRODUCT_I18N_KEYS = {
+    'chocolate-dates': 'products.chocolateDates',
+    'gift-baby-boy': 'products.babyBoyGiftBox',
+    'asafeeri-qatayef': 'products.asafeeriQatayef',
+    'eid-al-adha-collection': 'products.eidAlAdhaCollection',
+    'gift-classics': 'products.palestinianCollection',
+    'gift-baby-girl': 'products.babyGirlGiftBox',
+    'gift-graduation': 'products.graduationGiftBox',
+};
 
 export function ProductCard({ product, onViewDetails, onAddToCart }) {
     const { id, name, price, image, description, highlights, cacaoPercent, available = true } = product;
+    const { t } = useTranslation();
+
+    const baseKey = PRODUCT_I18N_KEYS[id];
+    const displayName = baseKey ? t(`${baseKey}.name`) : name;
+    const displayDescription = baseKey ? t(`${baseKey}.description`) : description;
 
     return (
         <div className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-[#7A4B2A]/10">
@@ -13,14 +29,14 @@ export function ProductCard({ product, onViewDetails, onAddToCart }) {
             >
                 <img
                     src={image}
-                    alt={name}
+                    alt={displayName}
                     loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 {!available && (
                     <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
                         <span className="bg-white text-[#5A2D0C] px-3 py-1 rounded text-sm font-medium">
-                            Out of Stock
+                            {t('buttons.outOfStock')}
                         </span>
                     </div>
                 )}
@@ -38,11 +54,11 @@ export function ProductCard({ product, onViewDetails, onAddToCart }) {
                     className="text-left w-full mb-2"
                 >
                     <h3 className="font-heading text-[#5A2D0C] mb-1 group-hover:text-[#B8860B] transition-colors">
-                        {name}
+                        {displayName}
                     </h3>
                     {description && (
                         <p className="text-sm text-[#7A4B2A]/70 line-clamp-2 mb-3">
-                            {description}
+                            {displayDescription}
                         </p>
                     )}
                 </button>
@@ -66,12 +82,18 @@ export function ProductCard({ product, onViewDetails, onAddToCart }) {
                     </span>
                     <button
                         type="button"
-                        onClick={() => onAddToCart?.(product)}
+                        onClick={() =>
+                            onAddToCart?.({
+                                ...product,
+                                name: displayName,
+                                description: displayDescription,
+                            })
+                        }
                         disabled={!available}
                         className="flex items-center gap-1 bg-[#7A4B2A] hover:bg-[#5A2D0C] disabled:opacity-50 disabled:cursor-not-allowed text-white px-3 py-1.5 rounded text-sm font-medium transition-colors"
                     >
                         <ShoppingCart className="w-4 h-4" />
-                        Add
+                        {t('buttons.add')}
                     </button>
                 </div>
             </div>

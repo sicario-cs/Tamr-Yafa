@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { MapPin, Phone, Send } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-
+import { useTranslation } from 'react-i18next';
 
 const SHOP_WHATSAPP_NUMBER = '972599987735';
 
@@ -14,6 +14,7 @@ export function ContactPage() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const { t, i18n } = useTranslation();
 
   const buildWhatsAppContactMessage = () => {
     const lines = [
@@ -57,9 +58,11 @@ export function ContactPage() {
       {/* Header */}
       <div className="bg-[#5A2D0C] py-16">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="font-heading text-[#F3E9E1] text-5xl mb-4">Contact</h1>
+          <h1 className="font-heading text-[#F3E9E1] text-5xl mb-4">
+            {t('contact.title')}
+          </h1>
           <p className="text-[#F3E9E1]/80 text-lg max-w-2xl mx-auto">
-            Questions about an order, gift boxes, or delivery? Send us a message and we’ll reply as soon as possible.
+            {t('contact.subtitle')}
           </p>
         </div>
       </div>
@@ -71,10 +74,18 @@ export function ContactPage() {
             <div className="w-14 h-14 bg-[#B8860B]/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <MapPin className="w-7 h-7 text-[#B8860B]" />
             </div>
-            <h3 className="font-heading text-[#5A2D0C] mb-2">Location</h3>
+            <h3 className="font-heading text-[#5A2D0C] mb-2">
+              {t('contact.locationTitle')}
+            </h3>
             <p className="text-[#7A4B2A]/70 text-sm">
-              West Bank<br />
-              Ramallah, Al Bireh
+              {t('contact.locationBody')
+                .split('\\n')
+                .map((line, idx) => (
+                  <span key={idx}>
+                    {line}
+                    <br />
+                  </span>
+                ))}
             </p>
           </div>
 
@@ -82,9 +93,11 @@ export function ContactPage() {
             <div className="w-14 h-14 bg-[#7FB069]/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <Phone className="w-7 h-7 text-[#7FB069]" />
             </div>
-            <h3 className="font-heading text-[#5A2D0C] mb-2">Phone</h3>
+            <h3 className="font-heading text-[#5A2D0C] mb-2">
+              {t('contact.phoneTitle')}
+            </h3>
             <p className="text-[#7A4B2A]/70 text-sm">
-              (+970) ##########
+              {t('contact.phoneBody')}
             </p>
           </div>
         </div>
@@ -92,7 +105,9 @@ export function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Contact Form */}
           <div className="bg-white rounded-lg p-8">
-            <h2 className="font-heading text-[#5A2D0C] text-3xl mb-6">Send Us a Message</h2>
+            <h2 className="font-heading text-[#5A2D0C] text-3xl mb-6">
+              {t('contact.formTitle')}
+            </h2>
 
             {submitted ? (
               <div className="text-center py-12">
@@ -101,14 +116,18 @@ export function ContactPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="font-heading text-[#5A2D0C] text-2xl mb-2">Message Sent!</h3>
-                <p className="text-[#7A4B2A]">Thank you. We’ll get back to you soon.</p>
+                <h3 className="font-heading text-[#5A2D0C] text-2xl mb-2">
+                  {t('contact.submittedTitle')}
+                </h3>
+                <p className="text-[#7A4B2A]">
+                  {t('contact.submittedBody')}
+                </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="name" className="block text-[#5A2D0C] text-sm mb-2">
-                    Name *
+                    {t('contact.nameLabel')}
                   </label>
                   <input
                     id="name"
@@ -122,7 +141,7 @@ export function ContactPage() {
 
                 <div>
                   <label htmlFor="phone" className="block text-[#5A2D0C] text-sm mb-2">
-                    Phone
+                    {t('contact.phoneLabel')}
                   </label>
                   <input
                     id="phone"
@@ -130,14 +149,14 @@ export function ContactPage() {
                     type="tel"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="+970"
+                    placeholder={t('contact.phonePlaceholder')}
                     className="w-full px-4 py-3 rounded-lg bg-[#F3E9E1] border border-[#7A4B2A]/20 text-[#5A2D0C] outline-none focus:ring-2 focus:ring-[#7A4B2A]/30"
                   />
                 </div>
 
                 <div>
                   <label htmlFor="subject" className="block text-[#5A2D0C] text-sm mb-2">
-                    Subject *
+                    {t('contact.subjectLabel')}
                   </label>
                   <input
                     id="subject"
@@ -151,7 +170,7 @@ export function ContactPage() {
 
                 <div>
                   <label htmlFor="message" className="block text-[#5A2D0C] text-sm mb-2">
-                    Message *
+                    {t('contact.messageLabel')}
                   </label>
                   <textarea
                     id="message"
@@ -169,7 +188,7 @@ export function ContactPage() {
                   className="w-full inline-flex items-center justify-center gap-2 bg-[#7A4B2A] hover:bg-[#5A2D0C] text-white px-6 py-3 rounded-lg transition-colors font-medium"
                 >
                   <Send className="w-4 h-4" />
-                  Send via WhatsApp
+                  {t('contact.sendButton')}
                 </button>
               </form>
             )}
@@ -178,22 +197,28 @@ export function ContactPage() {
           {/* Quick Notes */}
           <div className="space-y-6">
             <div className="bg-white rounded-lg p-8">
-              <h3 className="font-heading text-[#5A2D0C] text-2xl mb-3">Order help</h3>
+              <h3 className="font-heading text-[#5A2D0C] text-2xl mb-3">
+                {t('contact.orderHelpTitle')}
+              </h3>
               <p className="text-[#7A4B2A]/70">
-                For faster support, include your phone number and the items you want (and any gift wrapping notes).
+                {t('contact.orderHelpBody')}
               </p>
             </div>
 
             <div className="bg-linear-to-r from-[#5A2D0C] to-[#7A4B2A] rounded-lg p-8 text-center">
-              <h3 className="font-heading text-[#F3E9E1] text-2xl mb-2">Instagram</h3>
-              <p className="text-[#F3E9E1]/80 mb-4">@tamr.yafa.online</p>
+              <h3 className="font-heading text-[#F3E9E1] text-2xl mb-2">
+                {t('contact.instagramTitle')}
+              </h3>
+              <p className="text-[#F3E9E1]/80 mb-4">
+                {t('contact.instagramHandle')}
+              </p>
               <a
                 href="https://www.instagram.com/tamr.yafa.online/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-6 py-3 bg-[#B8860B] hover:bg-[#B8860B]/90 text-white rounded-lg transition-colors font-medium"
               >
-                Visit Instagram
+                {t('contact.visitInstagram')}
               </a>
             </div>
           </div>

@@ -6,6 +6,17 @@ import { useCart } from '../components/CartContext';
 import { ProductCard } from '../components/ProductCard';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
+import { useTranslation } from 'react-i18next';
+
+const PRODUCT_I18N_KEYS = {
+  'chocolate-dates': 'products.chocolateDates',
+  'gift-baby-boy': 'products.babyBoyGiftBox',
+  'asafeeri-qatayef': 'products.asafeeriQatayef',
+  'eid-al-adha-collection': 'products.eidAlAdhaCollection',
+  'gift-classics': 'products.palestinianCollection',
+  'gift-baby-girl': 'products.babyGirlGiftBox',
+  'gift-graduation': 'products.graduationGiftBox',
+};
 
 export function ProductDetailPage() {
   const { addToCart } = useCart();
@@ -16,6 +27,11 @@ export function ProductDetailPage() {
   const [quantity, setQuantity] = useState(1);
   const [selectedVariant, setSelectedVariant] = useState({});
   const [activeTab, setActiveTab] = useState('description');
+  const { t } = useTranslation();
+
+  const baseKey = product ? PRODUCT_I18N_KEYS[product.id] : null;
+  const displayName = product && baseKey ? t(`${baseKey}.name`) : product?.name;
+  const displayDescription = product && baseKey ? t(`${baseKey}.description`) : product?.description;
 
   const getCurrentPrice = () => {
     if (product.variants && product.variants.sizePrices && selectedVariant.size) {
@@ -33,13 +49,15 @@ export function ProductDetailPage() {
         <Header />
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center">
-            <h2 className="font-heading text-[#5A2D0C] text-3xl mb-4">Product Not Found</h2>
+            <h2 className="font-heading text-[#5A2D0C] text-3xl mb-4">
+              {t('product.notFoundTitle')}
+            </h2>
             <button
               type="button"
               onClick={() => navigate('/shop')}
               className="bg-[#7A4B2A] hover:bg-[#5A2D0C] text-white px-6 py-3 rounded-lg transition-colors font-medium"
             >
-              Back to Shop
+              {t('product.backToShop')}
             </button>
           </div>
         </div>
@@ -52,7 +70,7 @@ export function ProductDetailPage() {
     for (let i = 0; i < quantity; i++) {
       addToCart({
         id: product.id,
-        name: product.name,
+        name: displayName,
         price: getCurrentPrice(),
         image: product.image,
         variant: Object.keys(selectedVariant).length > 0 ? selectedVariant : undefined,
@@ -61,10 +79,10 @@ export function ProductDetailPage() {
   };
 
   const tabs = [
-    { id: 'description', label: 'Description' },
-    { id: 'ingredients', label: 'Ingredients' },
-    ...(product.nutrition ? [{ id: 'nutrition', label: 'Nutrition' }] : []),
-    { id: 'reviews', label: 'Reviews' },
+    { id: 'description', label: t('product.tabs.description') },
+    { id: 'ingredients', label: t('product.tabs.ingredients') },
+    ...(product.nutrition ? [{ id: 'nutrition', label: t('product.tabs.nutrition') }] : []),
+    { id: 'reviews', label: t('product.tabs.reviews') },
   ];
 
   return (
@@ -79,7 +97,7 @@ export function ProductDetailPage() {
           className="mb-6 flex items-center gap-2 text-[#7A4B2A] hover:text-[#5A2D0C] transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          Back to Shop
+          {t('product.backToShop')}
         </button>
 
         {/* Product Details */}
@@ -110,7 +128,7 @@ export function ProductDetailPage() {
                   {product.category.replace('-', ' ')}
                 </span>
                 <h1 className="font-heading text-[#5A2D0C] text-4xl mb-2">
-                  {product.name}
+                  {displayName}
                 </h1>
               </div>
               <div className="flex gap-2">
@@ -138,7 +156,7 @@ export function ProductDetailPage() {
               <span className="text-[#7A4B2A] ml-2">(48 reviews)</span>
             </div>
 
-            <p className="text-[#7A4B2A] text-lg mb-6">{product.description}</p>
+            <p className="text-[#7A4B2A] text-lg mb-6">{displayDescription}</p>
 
             <div className="flex flex-wrap gap-2 mb-6">
               {product.highlights.map((highlight, index) => (
@@ -160,7 +178,9 @@ export function ProductDetailPage() {
               <div className="space-y-4 mb-6">
                 {product.variants.sizes && (
                   <div>
-                    <label htmlFor="variantSize" className="block text-[#5A2D0C] mb-2">Size</label>
+                    <label htmlFor="variantSize" className="block text-[#5A2D0C] mb-2">
+                      {t('product.size')}
+                    </label>
                     <select
                       id="variantSize"
                       name="variantSize"
@@ -170,7 +190,7 @@ export function ProductDetailPage() {
                       }
                       className="w-full px-4 py-3 rounded-lg bg-[#F3E9E1] border border-[#7A4B2A]/20 text-[#5A2D0C] outline-none focus:ring-2 focus:ring-[#7A4B2A]/30"
                     >
-                      <option value="">Select size</option>
+                      <option value="">{t('product.selectSize')}</option>
                       {product.variants.sizes.map((size) => (
                         <option key={size} value={size}>
                           {size}
@@ -182,7 +202,9 @@ export function ProductDetailPage() {
 
                 {product.variants.flavors && (
                   <div>
-                    <label htmlFor="variantFlavor" className="block text-[#5A2D0C] mb-2">Flavor</label>
+                    <label htmlFor="variantFlavor" className="block text-[#5A2D0C] mb-2">
+                      {t('product.flavor')}
+                    </label>
                     <select
                       id="variantFlavor"
                       name="variantFlavor"
@@ -192,7 +214,7 @@ export function ProductDetailPage() {
                       }
                       className="w-full px-4 py-3 rounded-lg bg-[#F3E9E1] border border-[#7A4B2A]/20 text-[#5A2D0C] outline-none focus:ring-2 focus:ring-[#7A4B2A]/30"
                     >
-                      <option value="">Select flavor</option>
+                      <option value="">{t('product.selectFlavor')}</option>
                       {product.variants.flavors.map((flavor) => (
                         <option key={flavor} value={flavor}>
                           {flavor}
@@ -205,7 +227,9 @@ export function ProductDetailPage() {
                 {/* Chocolate type – all products except Asafeeri Qatayef */}
                 {product.id !== 'asafeeri-qatayef' && (
                   <div>
-                    <label htmlFor="variantChocolateType" className="block text-[#5A2D0C] mb-2">Chocolate type</label>
+                    <label htmlFor="variantChocolateType" className="block text-[#5A2D0C] mb-2">
+                      {t('product.chocolateType')}
+                    </label>
                     <select
                       id="variantChocolateType"
                       name="variantChocolateType"
@@ -215,7 +239,7 @@ export function ProductDetailPage() {
                       }
                       className="w-full px-4 py-3 rounded-lg bg-[#F3E9E1] border border-[#7A4B2A]/20 text-[#5A2D0C] outline-none focus:ring-2 focus:ring-[#7A4B2A]/30"
                     >
-                      <option value="">Select chocolate type</option>
+                      <option value="">{t('product.selectChocolateType')}</option>
                       {CHOCOLATE_TYPE_OPTIONS.map((opt) => (
                         <option key={opt.value} value={opt.label}>
                           {opt.label}
@@ -228,7 +252,9 @@ export function ProductDetailPage() {
                 {/* Filling – all products except Asafeeri Qatayef */}
                 {product.id !== 'asafeeri-qatayef' && (
                   <div>
-                    <span className="block text-[#5A2D0C] mb-2">Filling</span>
+                    <span className="block text-[#5A2D0C] mb-2">
+                      {t('product.filling')}
+                    </span>
                     <div className="flex flex-wrap gap-3">
                       {FILLING_OPTIONS.map((opt) => {
                         const fillings = selectedVariant.fillings || [];
@@ -268,7 +294,9 @@ export function ProductDetailPage() {
             {product.id !== 'asafeeri-qatayef' && (!product.variants || (!product.variants.sizes && !product.variants.flavors)) && (
               <div className="space-y-4 mb-6">
                 <div>
-                  <label htmlFor="variantChocolateTypeOnly" className="block text-[#5A2D0C] mb-2">Chocolate type</label>
+                  <label htmlFor="variantChocolateTypeOnly" className="block text-[#5A2D0C] mb-2">
+                    {t('product.chocolateType')}
+                  </label>
                   <select
                     id="variantChocolateTypeOnly"
                     name="variantChocolateTypeOnly"
@@ -278,7 +306,7 @@ export function ProductDetailPage() {
                     }
                     className="w-full px-4 py-3 rounded-lg bg-[#F3E9E1] border border-[#7A4B2A]/20 text-[#5A2D0C] outline-none focus:ring-2 focus:ring-[#7A4B2A]/30"
                   >
-                    <option value="">Select chocolate type</option>
+                    <option value="">{t('product.selectChocolateType')}</option>
                     {CHOCOLATE_TYPE_OPTIONS.map((opt) => (
                       <option key={opt.value} value={opt.label}>
                         {opt.label}
@@ -287,7 +315,9 @@ export function ProductDetailPage() {
                   </select>
                 </div>
                 <div>
-                  <span className="block text-[#5A2D0C] mb-2">Filling</span>
+                  <span className="block text-[#5A2D0C] mb-2">
+                    {t('product.filling')}
+                  </span>
                 <div className="flex flex-wrap gap-3">
                   {FILLING_OPTIONS.map((opt) => {
                     const fillings = selectedVariant.fillings || [];
@@ -324,7 +354,9 @@ export function ProductDetailPage() {
 
             {/* Quantity */}
             <div className="mb-6">
-              <label className="block text-[#5A2D0C] mb-2">Quantity</label>
+              <label className="block text-[#5A2D0C] mb-2">
+                {t('product.quantity')}
+              </label>
               <div className="flex items-center gap-4">
                 <button
                   type="button"
@@ -360,12 +392,12 @@ export function ProductDetailPage() {
               }`}
             >
               <ShoppingCart className="w-5 h-5" />
-              {product.available ? 'Add to Cart' : 'Out of Stock'}
+              {product.available ? t('buttons.addToCart') : t('buttons.outOfStock')}
             </button>
 
             {product.available && (
               <p className="text-center text-sm text-[#7FB069]">
-                ✓ Available and ready to ship
+                {t('product.availableToShip')}
               </p>
             )}
           </div>
@@ -395,7 +427,7 @@ export function ProductDetailPage() {
           <div className="text-[#7A4B2A]">
             {activeTab === 'description' && (
               <div>
-                <p className="mb-4">{product.description}</p>
+                <p className="mb-4">{displayDescription}</p>
                 <ul className="list-disc list-inside space-y-2">
                   {product.highlights.map((highlight, index) => (
                     <li key={index}>{highlight}</li>
@@ -409,7 +441,7 @@ export function ProductDetailPage() {
                 {product.ingredients ? (
                   <p>{product.ingredients}</p>
                 ) : (
-                  <p>Ingredient information not available.</p>
+                  <p>{t('product.ingredientsNotAvailable')}</p>
                 )}
               </div>
             )}
@@ -431,7 +463,7 @@ export function ProductDetailPage() {
                     </div>
                     <span className="text-[#5A2D0C] font-medium">Sarah M.</span>
                   </div>
-                  <p>Absolutely divine! The perfect balance of rich chocolate and subtle sweetness.</p>
+                  <p>{t('product.reviewsExamples.review1')}</p>
                 </div>
 
                 <div className="border-b border-[#7A4B2A]/20 pb-6">
@@ -443,7 +475,7 @@ export function ProductDetailPage() {
                     </div>
                     <span className="text-[#5A2D0C] font-medium">James K.</span>
                   </div>
-                  <p>Best chocolate I've ever had. You can really taste the quality.</p>
+                  <p>{t('product.reviewsExamples.review2')}</p>
                 </div>
               </div>
             )}
@@ -453,7 +485,9 @@ export function ProductDetailPage() {
         {/* Related Products */}
         {relatedProducts.length > 0 && (
           <div>
-            <h2 className="font-heading text-[#5A2D0C] text-3xl mb-8">You May Also Like</h2>
+            <h2 className="font-heading text-[#5A2D0C] text-3xl mb-8">
+              {t('product.youMayAlsoLike')}
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {relatedProducts.map((relatedProduct) => (
                 <ProductCard

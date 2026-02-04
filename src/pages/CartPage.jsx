@@ -4,12 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../components/CartContext';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
+import { useTranslation } from 'react-i18next';
 
 const GIFT_WRAP_FEE = 5;
 
 export function CartPage() {
   const { cart, removeFromCart, updateQuantity, getCartTotal, orderGiftOptions, setOrderGiftOptions } = useCart();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const subtotal = getCartTotal();
   const shipping = 20;
@@ -23,16 +25,18 @@ export function CartPage() {
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center max-w-md mx-auto px-4">
             <ShoppingBag className="w-24 h-24 text-[#7A4B2A]/30 mx-auto mb-6" />
-            <h2 className="font-heading text-[#5A2D0C] text-3xl mb-4">Your Cart is Empty</h2>
+            <h2 className="font-heading text-[#5A2D0C] text-3xl mb-4">
+              {t('cart.emptyTitle')}
+            </h2>
             <p className="text-[#7A4B2A] mb-8">
-              Looks like you haven't added any chocolates to your cart yet.
+              {t('cart.emptyBody')}
             </p>
             <button
               type="button"
               onClick={() => navigate('/shop')}
               className="bg-[#7A4B2A] hover:bg-[#5A2D0C] text-white px-8 py-3 rounded-lg transition-colors font-medium"
             >
-              Start Shopping
+              {t('buttons.startShopping')}
             </button>
           </div>
         </div>
@@ -48,9 +52,14 @@ export function CartPage() {
       {/* Header */}
       <div className="bg-[#5A2D0C] py-12">
         <div className="container mx-auto px-4">
-          <h1 className="font-heading text-[#F3E9E1] text-4xl mb-2">Shopping Cart</h1>
+          <h1 className="font-heading text-[#F3E9E1] text-4xl mb-2">
+            {t('cart.headerTitle')}
+          </h1>
           <p className="text-[#F3E9E1]/80">
-            {cart.length} {cart.length === 1 ? 'item' : 'items'} in your cart
+            {t('cart.itemsCount', {
+              count: cart.length,
+              itemLabel: cart.length === 1 ? t('cart.item') : t('cart.items'),
+            })}
           </p>
         </div>
       </div>
@@ -144,26 +153,28 @@ export function CartPage() {
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg p-6 sticky top-24">
               <h2 className="font-heading text-[#5A2D0C] text-2xl mb-6">
-                Order Summary
+                {t('cart.orderSummary')}
               </h2>
 
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between text-[#7A4B2A]">
-                  <span>Subtotal</span>
+                  <span>{t('cart.subtotal')}</span>
                   <span>₪{subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-[#7A4B2A]">
-                  <span>Shipping</span>
+                  <span>{t('cart.shipping')}</span>
                   <span>₪{shipping.toFixed(2)}</span>
                 </div>
                 {giftWrapFee > 0 && (
                   <div className="flex justify-between text-[#7A4B2A]">
-                    <span>Gift wrapping</span>
+                    <span>{t('cart.giftWrapping')}</span>
                     <span>₪{giftWrapFee.toFixed(2)}</span>
                   </div>
                 )}
                 <div className="border-t border-[#7A4B2A]/20 pt-3 flex justify-between">
-                  <span className="font-heading text-[#5A2D0C]">Total</span>
+                  <span className="font-heading text-[#5A2D0C]">
+                    {t('cart.total')}
+                  </span>
                   <span className="font-heading text-[#5A2D0C] text-xl">
                     ₪{total.toFixed(2)}
                   </span>
@@ -174,7 +185,7 @@ export function CartPage() {
               <div className="mb-6 pt-4 border-t border-[#7A4B2A]/20">
                 <h3 className="font-heading text-[#5A2D0C] text-lg mb-3 flex items-center gap-2">
                   <Gift className="w-5 h-5" />
-                  Gift options
+                  {t('cart.giftOptions')}
                 </h3>
                 <label className="flex items-center gap-2 cursor-pointer mb-3">
                   <input
@@ -197,7 +208,9 @@ export function CartPage() {
                     }
                     className="rounded border-[#7A4B2A]/40 text-[#7A4B2A] focus:ring-[#7A4B2A]/30"
                   />
-                  <span className="text-[#5A2D0C]">Add personal message</span>
+                  <span className="text-[#5A2D0C]">
+                    {t('cart.addPersonalMessage')}
+                  </span>
                 </label>
                 {orderGiftOptions.giftMessage && (
                   <textarea
@@ -207,7 +220,7 @@ export function CartPage() {
                     onChange={(e) =>
                       setOrderGiftOptions((prev) => ({ ...prev, giftNote: e.target.value }))
                     }
-                    placeholder="Your message for the recipient..."
+                    placeholder={t('cart.giftNotePlaceholder')}
                     rows={3}
                     className="w-full mt-2 px-3 py-2 rounded-lg bg-[#F3E9E1] border border-[#7A4B2A]/20 text-[#5A2D0C] outline-none focus:ring-2 focus:ring-[#7A4B2A]/30 resize-none text-sm"
                   />
@@ -219,7 +232,7 @@ export function CartPage() {
                 onClick={() => navigate('/checkout')}
                 className="w-full flex items-center justify-center gap-2 bg-[#7A4B2A] hover:bg-[#5A2D0C] text-white px-6 py-3 rounded-lg transition-colors font-medium mb-4"
               >
-                Proceed to Checkout
+                {t('buttons.proceedToCheckout')}
                 <ArrowRight className="w-4 h-4" />
               </button>
 
@@ -228,15 +241,15 @@ export function CartPage() {
                 onClick={() => navigate('/shop')}
                 className="w-full py-3 px-6 border-2 border-[#7A4B2A] text-[#7A4B2A] rounded-lg hover:bg-[#7A4B2A] hover:text-white transition-colors font-medium"
               >
-                Continue Shopping
+                {t('buttons.continueShopping')}
               </button>
 
               {/* Trust Badges */}
               <div className="mt-6 pt-6 border-t border-[#7A4B2A]/20">
                 <div className="space-y-2 text-sm text-[#7A4B2A]/70">
-                  <p>✓ Secure Checkout</p>
-                  <p>✓ Fast Delivery</p>
-                  <p>✓ 100% Satisfaction Guarantee</p>
+                  <p>{t('cart.trust.secureCheckout')}</p>
+                  <p>{t('cart.trust.fastDelivery')}</p>
+                  <p>{t('cart.trust.satisfaction')}</p>
                 </div>
               </div>
             </div>

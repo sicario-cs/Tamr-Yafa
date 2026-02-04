@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../components/CartContext';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
+import { useTranslation } from 'react-i18next';
 
 // Shop owner WhatsApp number (with country code, no + or spaces).
 const SHOP_WHATSAPP_NUMBER = '972599987735';
@@ -22,6 +23,7 @@ export function CheckoutPage() {
     city: '',
     notes: '',
   });
+  const { t } = useTranslation();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -30,10 +32,10 @@ export function CheckoutPage() {
   const formatItemVariant = (variant) => {
     if (!variant) return '';
     const parts = [
-      variant.size && `Size: ${variant.size}`,
-      variant.flavor && `Flavor: ${variant.flavor}`,
-      variant.chocolateType && `Chocolate: ${variant.chocolateType}`,
-      variant.fillings?.length && `Filling: ${variant.fillings.join(', ')}`,
+      variant.size && `${t('product.size')}: ${variant.size}`,
+      variant.flavor && `${t('product.flavor')}: ${variant.flavor}`,
+      variant.chocolateType && `${t('product.chocolateType')}: ${variant.chocolateType}`,
+      variant.fillings?.length && `${t('product.filling')}: ${variant.fillings.join(', ')}`,
     ].filter(Boolean);
     return parts.length ? ` (${parts.join(', ')})` : '';
   };
@@ -93,14 +95,14 @@ export function CheckoutPage() {
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center">
             <h2 className="font-heading text-[#5A2D0C] text-3xl mb-4">
-              Your cart is empty
+              {t('checkout.emptyTitle')}
             </h2>
             <button
               type="button"
               onClick={() => navigate('/shop')}
               className="bg-[#7A4B2A] hover:bg-[#5A2D0C] text-white px-6 py-3 rounded-lg transition-colors font-medium"
             >
-              Continue Shopping
+              {t('buttons.continueShopping')}
             </button>
           </div>
         </div>
@@ -132,19 +134,20 @@ export function CheckoutPage() {
                 </svg>
               </div>
               <h2 className="font-heading text-[#5A2D0C] text-3xl mb-4">
-                Order Confirmed!
+                {t('checkout.orderConfirmedTitle')}
               </h2>
               <p className="text-[#7A4B2A] mb-2">
-                Thank you for your order. We will contact you soon to confirm delivery details.
+                {t('checkout.orderConfirmedBody')}
               </p>
               <p className="text-[#7A4B2A]/70 text-sm mb-8">
-                Order #TY-{Math.floor(Math.random() * 100000)}
+                {t('checkout.orderNumber', { number: Math.floor(Math.random() * 100000) })}
               </p>
               <p className="text-[#7A4B2A] mb-6">
-                Open WhatsApp to send your order to the shop. We will contact you on your phone to confirm delivery.
+                {t('checkout.whatsappInstructions')}
               </p>
               {formData.email && (
                 <p className="text-[#7A4B2A] mb-6 text-sm">
+                  {/* This sentence remains in English; can be localized later if needed */}
                   A copy will be sent to <strong>{formData.email}</strong> when available.
                 </p>
               )}
@@ -154,14 +157,14 @@ export function CheckoutPage() {
                   onClick={() => navigate('/')}
                   className="w-full bg-[#7A4B2A] hover:bg-[#5A2D0C] text-white px-6 py-3 rounded-lg transition-colors font-medium"
                 >
-                  Back to Home
+                  {t('buttons.backToHome')}
                 </button>
                 <button
                   type="button"
                   onClick={() => navigate('/shop')}
                   className="w-full border-2 border-[#7A4B2A] text-[#7A4B2A] hover:bg-[#7A4B2A] hover:text-white px-6 py-3 rounded-lg transition-colors font-medium"
                 >
-                  Continue Shopping
+                  {t('buttons.continueShopping')}
                 </button>
               </div>
             </div>
@@ -185,9 +188,11 @@ export function CheckoutPage() {
             className="flex items-center gap-2 text-[#F3E9E1] hover:text-[#B8860B] mb-4 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Cart
+            {t('buttons.backToCart')}
           </button>
-          <h1 className="font-heading text-[#F3E9E1] text-4xl">Checkout</h1>
+          <h1 className="font-heading text-[#F3E9E1] text-4xl">
+            {t('checkout.title')}
+          </h1>
         </div>
       </div>
 
@@ -199,12 +204,12 @@ export function CheckoutPage() {
               {/* Contact Information */}
               <div className="bg-white rounded-lg p-6">
                 <h2 className="font-heading text-[#5A2D0C] text-2xl mb-6">
-                  Contact Information
+                  {t('checkout.contactInformation')}
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="md:col-span-2">
                     <label htmlFor="email" className="block text-[#5A2D0C] mb-2">
-                      Email (optional)
+                      {t('checkout.emailOptional')}
                     </label>
                     <input
                       id="email"
@@ -218,7 +223,7 @@ export function CheckoutPage() {
                   </div>
                   <div className="md:col-span-2">
                     <label htmlFor="phone" className="block text-[#5A2D0C] mb-2">
-                      Phone Number *
+                      {t('checkout.phoneNumber')}
                     </label>
                     <input
                       id="phone"
@@ -227,7 +232,7 @@ export function CheckoutPage() {
                       value={formData.phone}
                       onChange={handleChange}
                       required
-                      placeholder="+970 XXX XXX XXX"
+                      placeholder={t('checkout.phonePlaceholder')}
                       className="w-full px-4 py-3 rounded-lg bg-[#F3E9E1] border border-[#7A4B2A]/20 text-[#5A2D0C] outline-none focus:ring-2 focus:ring-[#7A4B2A]/30"
                     />
                   </div>
@@ -237,12 +242,12 @@ export function CheckoutPage() {
               {/* Shipping Address */}
               <div className="bg-white rounded-lg p-6">
                 <h2 className="font-heading text-[#5A2D0C] text-2xl mb-6">
-                  Shipping Address
+                  {t('checkout.shippingAddress')}
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="firstName" className="block text-[#5A2D0C] mb-2">
-                      First Name *
+                      {t('checkout.firstName')}
                     </label>
                     <input
                       id="firstName"
@@ -256,7 +261,7 @@ export function CheckoutPage() {
                   </div>
                   <div>
                     <label htmlFor="lastName" className="block text-[#5A2D0C] mb-2">
-                      Last Name *
+                      {t('checkout.lastName')}
                     </label>
                     <input
                       id="lastName"
@@ -269,7 +274,7 @@ export function CheckoutPage() {
                   </div>
                   <div className="md:col-span-2">
                     <label htmlFor="address" className="block text-[#5A2D0C] mb-2">
-                      Address *
+                      {t('checkout.address')}
                     </label>
                     <input
                       id="address"
@@ -277,13 +282,13 @@ export function CheckoutPage() {
                       value={formData.address}
                       onChange={handleChange}
                       required
-                      placeholder="Street address"
+                      placeholder={t('checkout.addressPlaceholder')}
                       className="w-full px-4 py-3 rounded-lg bg-[#F3E9E1] border border-[#7A4B2A]/20 text-[#5A2D0C] outline-none focus:ring-2 focus:ring-[#7A4B2A]/30"
                     />
                   </div>
                   <div className="md:col-span-2">
                     <label htmlFor="city" className="block text-[#5A2D0C] mb-2">
-                      City *
+                      {t('checkout.city')}
                     </label>
                     <input
                       id="city"
@@ -300,7 +305,7 @@ export function CheckoutPage() {
               {/* Order Notes */}
               <div className="bg-white rounded-lg p-6">
                 <h2 className="font-heading text-[#5A2D0C] text-2xl mb-6">
-                  Order Notes (Optional)
+                  {t('checkout.orderNotes')}
                 </h2>
                 <textarea
                   id="notes"
@@ -308,7 +313,7 @@ export function CheckoutPage() {
                   value={formData.notes}
                   onChange={handleChange}
                   rows={4}
-                  placeholder="Any special instructions for delivery..."
+                  placeholder={t('checkout.orderNotesPlaceholder')}
                   className="w-full px-4 py-3 rounded-lg bg-[#F3E9E1] border border-[#7A4B2A]/20 text-[#5A2D0C] outline-none focus:ring-2 focus:ring-[#7A4B2A]/30 resize-none"
                 />
               </div>
@@ -318,12 +323,11 @@ export function CheckoutPage() {
                 className="w-full flex items-center justify-center gap-2 bg-[#7A4B2A] hover:bg-[#5A2D0C] text-white px-6 py-4 rounded-lg transition-colors font-medium"
               >
                 <Lock className="w-4 h-4" />
-                Send Order via WhatsApp - ₪{total.toFixed(2)}
+                {t('checkout.sendOrderWhatsApp', { total: total.toFixed(2) })}
               </button>
 
               <p className="text-xs text-center text-[#7A4B2A]/60">
-                WhatsApp will open with your order details. Send the message to complete your order.
-                Payment will be collected upon delivery.
+                {t('checkout.whatsappNote')}
               </p>
             </form>
           </div>
@@ -332,7 +336,7 @@ export function CheckoutPage() {
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg p-6 sticky top-24">
               <h2 className="font-heading text-[#5A2D0C] text-2xl mb-6">
-                Order Summary
+                {t('checkout.orderSummary')}
               </h2>
 
               <div className="space-y-4 mb-6">
@@ -374,21 +378,23 @@ export function CheckoutPage() {
 
               <div className="border-t border-[#7A4B2A]/20 pt-4 space-y-3">
                 <div className="flex justify-between text-[#7A4B2A]">
-                  <span>Subtotal</span>
+                  <span>{t('cart.subtotal')}</span>
                   <span>₪{subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-[#7A4B2A]">
-                  <span>Shipping</span>
+                  <span>{t('cart.shipping')}</span>
                   <span>₪{shipping.toFixed(2)}</span>
                 </div>
                 {giftWrapFee > 0 && (
                   <div className="flex justify-between text-[#7A4B2A]">
-                    <span>Gift wrapping</span>
+                    <span>{t('cart.giftWrapping')}</span>
                     <span>₪{giftWrapFee.toFixed(2)}</span>
                   </div>
                 )}
                 <div className="border-t border-[#7A4B2A]/20 pt-3 flex justify-between">
-                  <span className="font-heading text-[#5A2D0C]">Total</span>
+                  <span className="font-heading text-[#5A2D0C]">
+                    {t('cart.total')}
+                  </span>
                   <span className="font-heading text-[#5A2D0C] text-xl">
                     ₪{total.toFixed(2)}
                   </span>
@@ -398,10 +404,10 @@ export function CheckoutPage() {
               <div className="mt-6 pt-6 border-t border-[#7A4B2A]/20">
                 <div className="flex items-center gap-2 text-sm text-[#7FB069] mb-2">
                   <Lock className="w-4 h-4" />
-                  <span>Cash on Delivery</span>
+                  <span>{t('checkout.cashOnDelivery')}</span>
                 </div>
                 <p className="text-xs text-[#7A4B2A]/60">
-                  Pay when you receive your order. We will contact you to confirm delivery details.
+                  {t('checkout.cashOnDeliveryNote')}
                 </p>
               </div>
             </div>

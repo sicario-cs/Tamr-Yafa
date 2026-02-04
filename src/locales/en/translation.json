@@ -1,0 +1,262 @@
+{
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "gifts": "Gift Sets",
+    "about": "About",
+    "contact": "Contact",
+    "cart": "Cart"
+  },
+  "header": {
+    "brand": "Tamr Yafa"
+  },
+  "buttons": {
+    "shopNow": "Shop Now",
+    "viewAllProducts": "View All Products",
+    "exploreGiftSets": "Explore Gift Sets",
+    "subscribe": "Subscribe",
+    "contactUs": "Contact Us",
+    "startShopping": "Start Shopping",
+    "continueShopping": "Continue Shopping",
+    "proceedToCheckout": "Proceed to Checkout",
+    "sendViaWhatsApp": "Send via WhatsApp",
+    "backToHome": "Back to Home",
+    "backToShop": "Back to Shop",
+    "backToCart": "Back to Cart",
+    "clearFilters": "Clear Filters",
+    "addToCart": "Add to Cart",
+    "outOfStock": "Out of Stock",
+    "add": "Add"
+  },
+  "home": {
+    "heroTitle": "Taste the Story",
+    "heroSubtitle": "Handcrafted Dates Stuffed with Nuts & Chocolate",
+    "heroBody": "Dates stuffed with nuts, covered in chocolate, and beautifully wrapped for every occasion.",
+    "features": {
+      "sustainableTitle": "Sustainably Sourced",
+      "sustainableBody": "We work directly with cacao farmers to ensure fair trade and quality.",
+      "awardTitle": "Award-Winning Quality",
+      "awardBody": "Recognized internationally for our exceptional craft and flavor.",
+      "handcraftedTitle": "Handcrafted with Love",
+      "handcraftedBody": "Every piece is carefully made by our master chocolatiers."
+    },
+    "signatureTitle": "Our Signature Collection",
+    "signatureBody": "Discover our most beloved creations, each one a testament to quality and craftsmanship.",
+    "giftsTitle": "Perfect Gifts for Every Occasion",
+    "giftsBody": "Our beautifully curated gift sets are perfect for celebrations, thank you gifts, or simply treating someone special.",
+    "newsletterTitle": "Join Our Chocolate Journey",
+    "newsletterBody": "Subscribe to get recipes, pairing tips, and exclusive offers delivered to your inbox.",
+    "newsletterPlaceholder": "Enter your email",
+    "newsletterSuccess": "Thank you for subscribing!"
+  },
+  "shop": {
+    "title": "Shop All Chocolates",
+    "subtitle": "Explore our complete collection of handcrafted chocolates, from bold dark bars to elegant truffles.",
+    "filters": {
+      "showFilters": "Show Filters",
+      "hideFilters": "Hide Filters",
+      "category": "Category",
+      "allProducts": "All Products",
+      "bars": "Chocolate Bars",
+      "giftSets": "Gift Sets",
+      "seasonal": "Seasonal",
+      "priceRange": "Price Range: ₪{{min}} - ₪{{max}}"
+    },
+    "results": {
+      "showing": "Showing {{count}} {{itemLabel}}",
+      "product": "product",
+      "products": "products",
+      "noResults": "No products match your filters."
+    }
+  },
+  "product": {
+    "notFoundTitle": "Product Not Found",
+    "backToShop": "Back to Shop",
+    "tabs": {
+      "description": "Description",
+      "ingredients": "Ingredients",
+      "nutrition": "Nutrition",
+      "reviews": "Reviews"
+    },
+    "selectSize": "Select size",
+    "size": "Size",
+    "flavor": "Flavor",
+    "selectFlavor": "Select flavor",
+    "chocolateType": "Chocolate type",
+    "selectChocolateType": "Select chocolate type",
+    "filling": "Filling",
+    "quantity": "Quantity",
+    "availableToShip": "✓ Available and ready to ship",
+    "ingredientsNotAvailable": "Ingredient information not available.",
+    "reviewsExamples": {
+      "review1": "Absolutely divine! The perfect balance of rich chocolate and subtle sweetness.",
+      "review2": "Best chocolate I've ever had. You can really taste the quality."
+    },
+    "youMayAlsoLike": "You May Also Like"
+  },
+  "cart": {
+    "emptyTitle": "Your Cart is Empty",
+    "emptyBody": "Looks like you haven't added any chocolates to your cart yet.",
+    "headerTitle": "Shopping Cart",
+    "itemsCount": "{{count}} {{itemLabel}} in your cart",
+    "item": "item",
+    "items": "items",
+    "orderSummary": "Order Summary",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "giftWrapping": "Gift wrapping",
+    "total": "Total",
+    "giftOptions": "Gift options",
+    "addGiftWrapping": "Gift wrapping",
+    "addPersonalMessage": "Add personal message",
+    "giftNotePlaceholder": "Your message for the recipient...",
+    "trust": {
+      "secureCheckout": "✓ Secure Checkout",
+      "fastDelivery": "✓ Fast Delivery",
+      "satisfaction": "✓ 100% Satisfaction Guarantee"
+    }
+  },
+  "checkout": {
+    "emptyTitle": "Your cart is empty",
+    "orderConfirmedTitle": "Order Confirmed!",
+    "orderConfirmedBody": "Thank you for your order. We will contact you soon to confirm delivery details.",
+    "orderNumber": "Order #TY-{{number}}",
+    "whatsappInstructions": "Open WhatsApp to send your order to the shop. We will contact you on your phone to confirm delivery.",
+    "backToHome": "Back to Home",
+    "continueShopping": "Continue Shopping",
+    "title": "Checkout",
+    "contactInformation": "Contact Information",
+    "emailOptional": "Email (optional)",
+    "phoneNumber": "Phone Number *",
+    "phonePlaceholder": "+970 XXX XXX XXX",
+    "shippingAddress": "Shipping Address",
+    "firstName": "First Name *",
+    "lastName": "Last Name *",
+    "address": "Address *",
+    "addressPlaceholder": "Street address",
+    "city": "City *",
+    "orderNotes": "Order Notes (Optional)",
+    "orderNotesPlaceholder": "Any special instructions for delivery...",
+    "sendOrderWhatsApp": "Send Order via WhatsApp - ₪{{total}}",
+    "whatsappNote": "WhatsApp will open with your order details. Send the message to complete your order. Payment will be collected upon delivery.",
+    "orderSummary": "Order Summary",
+    "cashOnDelivery": "Cash on Delivery",
+    "cashOnDeliveryNote": "Pay when you receive your order. We will contact you to confirm delivery details."
+  },
+  "gifts": {
+    "heroTitle": "Gift Sets",
+    "heroBody": "Beautifully packaged chocolate gifts for every occasion.",
+    "directShippingTitle": "Direct Shipping",
+    "directShippingBody": "Send directly to your recipient with a gift receipt. Free shipping on orders over ₪50.",
+    "collectionsTitle": "Our Gift Collections",
+    "noGiftSets": "No gift sets available at the moment.",
+    "corporateTitle": "Corporate & Bulk Gifting",
+    "corporateBody": "Need many boxes for your team or clients? We can help you build a custom selection."
+  },
+  "about": {
+    "heroTitle": "Our Story",
+    "heroBody": "Tamr Yafa is a small-batch chocolate kitchen inspired by local flavors and crafted with care.",
+    "craftedTitle": "Crafted with Love, Rooted in Tradition",
+    "craftedBody1": "Tamr Yafa started with a simple idea: make chocolate that feels personal—beautiful, generous, and unforgettable. We blend premium chocolate with flavors we grew up with, like dates and pistachio, then finish each piece by hand.",
+    "craftedBody2": "We focus on quality ingredients, careful tempering, and small-batch production so every box tastes fresh and looks like a gift.",
+    "craftedBody3": "From our kitchen in the Ramallah area, we prepare chocolates for everyday moments and special occasions—because the best gifts are the ones made with intention.",
+    "values": {
+      "freshTitle": "Fresh Ingredients",
+      "freshBody": "We choose ingredients that taste clean and rich—so every bite feels premium.",
+      "qualityTitle": "Quality First",
+      "qualityBody": "Small batches, careful tempering, and consistent finishing—every time.",
+      "sharingTitle": "Made for Sharing",
+      "sharingBody": "Our boxes are designed to be opened together—at home, at work, and at celebrations.",
+      "handcraftedTitle": "Handcrafted",
+      "handcraftedBody": "Every piece is finished by hand—because details are what make it special."
+    },
+    "processTitle": "Our Process",
+    "processSteps": {
+      "selectTitle": "Select",
+      "selectBody": "We choose premium chocolate and complementary ingredients for balanced flavor.",
+      "craftTitle": "Craft",
+      "craftBody": "We temper, mold, fill, and finish each batch with careful timing and technique.",
+      "decorateTitle": "Decorate",
+      "decorateBody": "Every piece is decorated to look as good as it tastes—gift-ready by default.",
+      "packTitle": "Pack",
+      "packBody": "We pack in sturdy, elegant boxes to arrive safely and beautifully."
+    },
+    "footerTitle": "Tamr Yafa",
+    "footerBody": "Handmade chocolates and gift boxes inspired by local taste—crafted to share."
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Questions about an order, gift boxes, or delivery? Send us a message and we’ll reply as soon as possible.",
+    "locationTitle": "Location",
+    "locationBody": "West Bank\\nRamallah, Al Bireh",
+    "phoneTitle": "Phone",
+    "phoneBody": "(+970) ##########",
+    "formTitle": "Send Us a Message",
+    "nameLabel": "Name *",
+    "phoneLabel": "Phone",
+    "phonePlaceholder": "+970",
+    "subjectLabel": "Subject *",
+    "messageLabel": "Message *",
+    "sendButton": "Send via WhatsApp",
+    "submittedTitle": "Message Sent!",
+    "submittedBody": "Thank you. We’ll get back to you soon.",
+    "orderHelpTitle": "Order help",
+    "orderHelpBody": "For faster support, include your phone number and the items you want (and any gift wrapping notes).",
+    "instagramTitle": "Instagram",
+    "instagramHandle": "@tamr.yafa.online",
+    "visitInstagram": "Visit Instagram"
+  },
+  "footer": {
+    "aboutTitle": "Tamr Yafa",
+    "aboutBody": "Dates stuffed with nuts and covered in chocolate. Designed with decorations and colors suited for all occasions.",
+    "shopTitle": "Shop",
+    "allProducts": "All Products",
+    "giftSets": "Gift Sets",
+    "companyTitle": "Company",
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "wholesale": "Wholesale",
+    "contactTitle": "Contact",
+    "address": "west bank\\nRamallah, Al Bireh",
+    "phone": "(+970) ##########",
+    "email": "yafatamr@gmail.com",
+    "rights": "© {{year}} Tamr Yafa. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "shippingInfo": "Shipping Info"
+  },
+  "shippingDialog": {
+    "title": "Shipping Information"
+  },
+  "products": {
+    "chocolateDates": {
+      "name": "Chocolate Dates",
+      "description": "A premium box of chocolate-covered dates, elegantly decorated and crafted for a refined gifting experience."
+    },
+    "babyBoyGiftBox": {
+      "name": "Baby Boy Gift Box",
+      "description": "Blue-themed baby boy gift box with assorted chocolates, perfect for baby showers and first visits."
+    },
+    "asafeeriQatayef": {
+      "name": "Asafeeri Qatayef",
+      "description": "Delicate Asafeeri qatayef filled with rich, creamy filling and finished with a light touch of syrup. Soft, indulgent, and crafted to capture the authentic taste of traditional Arabic desserts."
+    },
+    "eidAlAdhaCollection": {
+      "name": "Eid al-Adha Collection",
+      "description": "A special Eid al-Adha gift box filled with mixed chocolates and decorated in a festive Eid theme. Perfect for family visits and celebrations."
+    },
+    "palestinianCollection": {
+      "name": "Palestinian Collection Gift Box",
+      "description": "Signature Palestinian-inspired collection with chocolate-covered dates and pralines, decorated in the colors and style of Palestine."
+    },
+    "babyGirlGiftBox": {
+      "name": "Baby Girl Gift Box",
+      "description": "Pink-themed baby girl gift box with assorted chocolates, perfect for baby showers and first visits."
+    },
+    "graduationGiftBox": {
+      "name": "Graduation Gift Box",
+      "description": "Graduation gift box with assorted chocolates, perfect for graduation ceremonies and celebrations."
+    }
+  }
+}
+
