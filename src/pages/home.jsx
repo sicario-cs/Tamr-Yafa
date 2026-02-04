@@ -58,7 +58,7 @@ export function HomePage() {
                             onClick={() => navigate('/shop')}
                             className="inline-flex items-center gap-2 bg-[#B8860B] hover:bg-[#B8860B]/90 text-white font-medium py-3 px-6 rounded-lg transition-colors"
                         >
-                            Shop Signature Collection
+                            Shop Now
                             <ArrowRight className="w-5 h-5" />
                         </button>
                     </div>

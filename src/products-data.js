@@ -142,23 +142,16 @@ export const products = [
         featured: false,
         relatedProducts: ['gift-classics'],
     },
-    {
-        id: 'Dubai Chocolate',
-        name: 'Dubai Chocolate',
-        price: 20,
-        description: 'A rich and indulgent chocolate experience with a bold yet balanced character. Smooth, refined, and crafted with attention to detail, Dubai Chocolate reflects luxury, quality, and a distinctive taste.',
-        image: dubaiChocolateImage,
-        category: 'pieces',
-        cacaoPercent: 70,
-        highlights: ['70% pistachio', 'Minimal sugar', 'Gluten-free'],
-        ingredients: 'Cacao mass, cane sugar, cocoa butter, soy lecithin, natural vanilla',
-        nutrition: 'Per 30g: 170 kcal, 12g fat, 14g carbs, 2g protein',
-        available: false,
-        featured: false,
-        variants: { sizes: ['60g', '100g'] },
-        relatedProducts: ['bar-85-percent', 'chocolate-dates'],
-    },
-    
+   
+];
+
+/** Filling options (Arabic: لوز، جوز عين جمل، فستق حلبي، كاجو، بندق) */
+export const FILLING_OPTIONS = [
+    { value: 'almond', label: 'Almond' },           // لوز
+    { value: 'walnut', label: 'Walnut' },           // جوز (عين جمل)
+    { value: 'pistachio', label: 'Pistachio' },      // فستق حلبي
+    { value: 'cashew', label: 'Cashew' },           // كاجو
+    { value: 'hazelnut', label: 'Hazelnut' },       // بندق
 ];
 
 export function getProductById(id) {

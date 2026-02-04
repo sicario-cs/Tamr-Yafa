@@ -6,10 +6,11 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 
 // Shop owner WhatsApp number (with country code, no + or spaces).
-const SHOP_WHATSAPP_NUMBER = '972599987735';
+const SHOP_WHATSAPP_NUMBER = '970597622752';
+const GIFT_WRAP_FEE = 5;
 
 export function CheckoutPage() {
-  const { cart, getCartTotal, clearCart } = useCart();
+  const { cart, getCartTotal, clearCart, orderGiftOptions } = useCart();
   const navigate = useNavigate();
   const [orderComplete, setOrderComplete] = useState(false);
   const [formData, setFormData] = useState({
@@ -31,9 +32,7 @@ export function CheckoutPage() {
     const parts = [
       variant.size && `Size: ${variant.size}`,
       variant.flavor && `Flavor: ${variant.flavor}`,
-      variant.giftWrap && 'Gift wrapping',
-      variant.giftMessage && 'Personal message',
-      variant.giftNote && `Note: ${variant.giftNote}`,
+      variant.fillings?.length && `Filling: ${variant.fillings.join(', ')}`,
     ].filter(Boolean);
     return parts.length ? ` (${parts.join(', ')})` : '';
   };
@@ -41,7 +40,8 @@ export function CheckoutPage() {
   const buildWhatsAppOrderMessage = () => {
     const subtotal = getCartTotal();
     const shipping = 20;
-    const total = subtotal + shipping;
+    const giftWrapFee = orderGiftOptions.giftWrap ? GIFT_WRAP_FEE : 0;
+    const total = subtotal + shipping + giftWrapFee;
     const lines = [
       '🛒 *New Order - Tamr Yafa*',
       '',
@@ -62,7 +62,11 @@ export function CheckoutPage() {
       '',
       `💰 Subtotal: ₪${subtotal.toFixed(2)}`,
       `🚚 Shipping: ₪${shipping.toFixed(2)}`,
+      ...(giftWrapFee > 0 ? [`🎁 Gift wrapping: ₪${giftWrapFee.toFixed(2)}`] : []),
       `💵 *Total: ₪${total.toFixed(2)}*`,
+      ...(orderGiftOptions.giftMessage
+        ? ['', '💌 *Gift message:*', orderGiftOptions.giftNote || '(no text)']
+        : []),
     ];
     return lines.filter(Boolean).join('\n');
   };
@@ -78,7 +82,8 @@ export function CheckoutPage() {
 
   const subtotal = getCartTotal();
   const shipping = 20;
-  const total = subtotal + shipping;
+  const giftWrapFee = orderGiftOptions.giftWrap ? GIFT_WRAP_FEE : 0;
+  const total = subtotal + shipping + giftWrapFee;
 
   if (cart.length === 0 && !orderComplete) {
     return (
@@ -350,9 +355,7 @@ export function CheckoutPage() {
                           {[
                             item.variant.size && `Size: ${item.variant.size}`,
                             item.variant.flavor && `Flavor: ${item.variant.flavor}`,
-                            item.variant.giftWrap && 'Gift wrapping',
-                            item.variant.giftMessage && 'Personal message',
-                            item.variant.giftNote && `Note: ${item.variant.giftNote}`,
+                            item.variant.fillings?.length && `Filling: ${item.variant.fillings.join(', ')}`,
                           ]
                             .filter(Boolean)
                             .join(' • ')}
@@ -376,6 +379,12 @@ export function CheckoutPage() {
                   <span>Shipping</span>
                   <span>₪{shipping.toFixed(2)}</span>
                 </div>
+                {giftWrapFee > 0 && (
+                  <div className="flex justify-between text-[#7A4B2A]">
+                    <span>Gift wrapping</span>
+                    <span>₪{giftWrapFee.toFixed(2)}</span>
+                  </div>
+                )}
                 <div className="border-t border-[#7A4B2A]/20 pt-3 flex justify-between">
                   <span className="font-heading text-[#5A2D0C]">Total</span>
                   <span className="font-heading text-[#5A2D0C] text-xl">

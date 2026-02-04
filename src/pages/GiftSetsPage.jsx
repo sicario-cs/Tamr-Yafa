@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Gift, Package, Heart } from 'lucide-react';
+import { Package } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { ProductCard } from '../components/ProductCard';
 import { getProductsByCategory } from '../products-data';
@@ -12,28 +12,12 @@ export function GiftSetsPage() {
   const { addToCart } = useCart();
   const giftProducts = getProductsByCategory('gift-sets');
 
-  const [giftWrap, setGiftWrap] = useState(false);
-  const [giftMessageEnabled, setGiftMessageEnabled] = useState(false);
-  const [giftMessageText, setGiftMessageText] = useState('');
-
   const handleAddToCart = (product) => {
-    const variant =
-      giftWrap || giftMessageEnabled
-        ? {
-            ...(giftWrap ? { giftWrap: true } : {}),
-            ...(giftMessageEnabled ? { giftMessage: true } : {}),
-            ...(giftMessageEnabled && giftMessageText
-              ? { giftNote: giftMessageText }
-              : {}),
-          }
-        : undefined;
-
     addToCart({
       id: product.id,
       name: product.name,
-      price: product.price + (giftWrap ? 5 : 0),
+      price: product.price,
       image: product.image,
-      variant,
     });
   };
 
@@ -61,81 +45,13 @@ export function GiftSetsPage() {
       </div>
 
       <div className="container mx-auto px-4 py-16">
-        {/* Gift Services */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <div className="bg-white rounded-lg p-6 text-center">
-            <div className="w-16 h-16 bg-[#B8860B]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Gift className="w-8 h-8 text-[#B8860B]" />
-            </div>
-            <h3 className="font-heading text-[#5A2D0C] mb-2">Gift Wrapping</h3>
-            <p className="text-[#7A4B2A]/70 text-sm">
-              Add luxury gift wrap with ribbon and a custom card (+₪5)
-            </p>
-            <div className="flex items-center justify-center gap-2 mt-4">
-              <input
-                id="gift-wrap"
-                type="checkbox"
-                checked={giftWrap}
-                onChange={(e) => setGiftWrap(e.target.checked)}
-                className="h-4 w-4 accent-[#7A4B2A]"
-              />
-              <label htmlFor="gift-wrap" className="text-sm text-[#5A2D0C] cursor-pointer">
-                Add gift wrapping
-              </label>
-            </div>
+        <div className="bg-white rounded-lg p-6 mb-12 max-w-2xl">
+          <div className="flex items-center gap-3 mb-2">
+            <Package className="w-8 h-8 text-[#7A4B2A]" />
+            <h3 className="font-heading text-[#5A2D0C]">Direct Shipping</h3>
           </div>
-
-          <div className="bg-white rounded-lg p-6 text-center">
-            <div className="w-16 h-16 bg-[#7FB069]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Heart className="w-8 h-8 text-[#7FB069]" />
-            </div>
-            <h3 className="font-heading text-[#5A2D0C] mb-2">Personal Message</h3>
-            <p className="text-[#7A4B2A]/70 text-sm">Include a handwritten note with your message</p>
-            <div className="flex items-center justify-center gap-2 mt-4">
-              <input
-                id="gift-message"
-                type="checkbox"
-                checked={giftMessageEnabled}
-                onChange={(e) => setGiftMessageEnabled(e.target.checked)}
-                className="h-4 w-4 accent-[#7A4B2A]"
-              />
-              <label htmlFor="gift-message" className="text-sm text-[#5A2D0C] cursor-pointer">
-                Add a message
-              </label>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg p-6 text-center">
-            <div className="w-16 h-16 bg-[#7A4B2A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Package className="w-8 h-8 text-[#7A4B2A]" />
-            </div>
-            <h3 className="font-heading text-[#5A2D0C] mb-2">Direct Shipping</h3>
-            <p className="text-[#7A4B2A]/70 text-sm">Send directly to your recipient with a gift receipt</p>
-            <p className="text-xs text-[#7FB069] mt-4">Free shipping on orders over ₪50</p>
-          </div>
+          <p className="text-[#7A4B2A]/70 text-sm">Send directly to your recipient with a gift receipt. Free shipping on orders over ₪50.</p>
         </div>
-
-        {giftMessageEnabled && (
-          <div className="max-w-2xl mx-auto mb-12">
-            <div className="bg-white rounded-lg p-6">
-              <label htmlFor="giftMessageText" className="block text-[#5A2D0C] mb-2 font-medium">
-                Gift message (optional)
-              </label>
-              <textarea
-                id="giftMessageText"
-                name="giftMessageText"
-                value={giftMessageText}
-                onChange={(e) => setGiftMessageText(e.target.value)}
-                rows={4}
-                placeholder="Write your message here…"
-                className="w-full px-4 py-3 rounded-lg bg-[#F3E9E1] border border-[#7A4B2A]/20 text-[#5A2D0C] outline-none focus:ring-2 focus:ring-[#7A4B2A]/30 resize-none"
-              />
-              <p className="text-xs text-[#7A4B2A]/60 mt-2">
-                We’ll do our best to include it. (This message is not added to the cart automatically.)
-              </p>
-            </div>
-          </div>
-        )}
 
         {/* Products */}
         <div>

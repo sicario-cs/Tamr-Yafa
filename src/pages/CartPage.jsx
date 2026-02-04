@@ -1,29 +1,20 @@
-import React, { useState } from 'react';
-import { Trash2, Plus, Minus, ShoppingBag, ArrowRight } from 'lucide-react';
+import React from 'react';
+import { Trash2, Plus, Minus, ShoppingBag, ArrowRight, Gift } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../components/CartContext';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 
-export function CartPage() {
-  const { cart, removeFromCart, updateQuantity, getCartTotal } = useCart();
-  const navigate = useNavigate();
-  const [promoCode, setPromoCode] = useState('');
-  const [discount, setDiscount] = useState(0);
+const GIFT_WRAP_FEE = 5;
 
-  const handleApplyPromo = () => {
-    if (promoCode.toUpperCase() === 'WELCOME10') {
-      setDiscount(getCartTotal() * 0.1);
-    } else if (promoCode.toUpperCase() === 'AURORA15') {
-      setDiscount(getCartTotal() * 0.15);
-    } else {
-      alert('Invalid promo code');
-    }
-  };
+export function CartPage() {
+  const { cart, removeFromCart, updateQuantity, getCartTotal, orderGiftOptions, setOrderGiftOptions } = useCart();
+  const navigate = useNavigate();
 
   const subtotal = getCartTotal();
   const shipping = 20;
-  const total = subtotal + shipping - discount;
+  const giftWrapFee = orderGiftOptions.giftWrap ? GIFT_WRAP_FEE : 0;
+  const total = subtotal + shipping + giftWrapFee;
 
   if (cart.length === 0) {
     return (
@@ -94,6 +85,7 @@ export function CartPage() {
                           {[
                             item.variant.size && `Size: ${item.variant.size}`,
                             item.variant.flavor && `Flavor: ${item.variant.flavor}`,
+                            item.variant.fillings?.length && `Filling: ${item.variant.fillings.join(', ')}`,
                             item.variant.giftWrap && 'Gift wrapping',
                             item.variant.giftMessage && 'Personal message',
                             item.variant.giftNote && `Note: ${item.variant.giftNote}`,
@@ -163,10 +155,10 @@ export function CartPage() {
                   <span>Shipping</span>
                   <span>₪{shipping.toFixed(2)}</span>
                 </div>
-                {discount > 0 && (
-                  <div className="flex justify-between text-[#7FB069]">
-                    <span>Discount</span>
-                    <span>-₪{discount.toFixed(2)}</span>
+                {giftWrapFee > 0 && (
+                  <div className="flex justify-between text-[#7A4B2A]">
+                    <span>Gift wrapping</span>
+                    <span>₪{giftWrapFee.toFixed(2)}</span>
                   </div>
                 )}
                 <div className="border-t border-[#7A4B2A]/20 pt-3 flex justify-between">
@@ -177,32 +169,48 @@ export function CartPage() {
                 </div>
               </div>
 
-              {/* Promo Code */}
-              <div className="mb-6">
-                <label htmlFor="promoCode" className="block text-[#5A2D0C] text-sm mb-2">
-                  Promo Code
-                </label>
-                <div className="flex gap-2">
+              {/* Gift options */}
+              <div className="mb-6 pt-4 border-t border-[#7A4B2A]/20">
+                <h3 className="font-heading text-[#5A2D0C] text-lg mb-3 flex items-center gap-2">
+                  <Gift className="w-5 h-5" />
+                  Gift options
+                </h3>
+                <label className="flex items-center gap-2 cursor-pointer mb-3">
                   <input
-                    id="promoCode"
-                    name="promoCode"
-                    type="text"
-                    value={promoCode}
-                    onChange={(e) => setPromoCode(e.target.value)}
-                    placeholder="Enter code"
-                    className="flex-1 px-3 py-2 rounded-lg bg-[#F3E9E1] border border-[#7A4B2A]/20 text-[#5A2D0C] outline-none focus:ring-2 focus:ring-[#7A4B2A]/30"
+                    type="checkbox"
+                    checked={orderGiftOptions.giftWrap}
+                    onChange={(e) =>
+                      setOrderGiftOptions((prev) => ({ ...prev, giftWrap: e.target.checked }))
+                    }
+                    className="rounded border-[#7A4B2A]/40 text-[#7A4B2A] focus:ring-[#7A4B2A]/30"
                   />
-                  <button
-                    type="button"
-                    onClick={handleApplyPromo}
-                    className="px-4 py-2 border-2 border-[#7A4B2A] text-[#7A4B2A] rounded-lg hover:bg-[#7A4B2A] hover:text-white transition-colors font-medium"
-                  >
-                    Apply
-                  </button>
-                </div>
-                <p className="text-xs text-[#7A4B2A]/60 mt-2">
-                  Try: WELCOME10 or AURORA15
-                </p>
+                  <span className="text-[#5A2D0C]">Gift wrapping</span>
+                  <span className="text-[#7A4B2A]/70 text-sm">(+₪{GIFT_WRAP_FEE})</span>
+                </label>
+                <label className="flex items-center gap-2 cursor-pointer mb-3">
+                  <input
+                    type="checkbox"
+                    checked={orderGiftOptions.giftMessage}
+                    onChange={(e) =>
+                      setOrderGiftOptions((prev) => ({ ...prev, giftMessage: e.target.checked }))
+                    }
+                    className="rounded border-[#7A4B2A]/40 text-[#7A4B2A] focus:ring-[#7A4B2A]/30"
+                  />
+                  <span className="text-[#5A2D0C]">Add personal message</span>
+                </label>
+                {orderGiftOptions.giftMessage && (
+                  <textarea
+                    id="giftNote"
+                    name="giftNote"
+                    value={orderGiftOptions.giftNote}
+                    onChange={(e) =>
+                      setOrderGiftOptions((prev) => ({ ...prev, giftNote: e.target.value }))
+                    }
+                    placeholder="Your message for the recipient..."
+                    rows={3}
+                    className="w-full mt-2 px-3 py-2 rounded-lg bg-[#F3E9E1] border border-[#7A4B2A]/20 text-[#5A2D0C] outline-none focus:ring-2 focus:ring-[#7A4B2A]/30 resize-none text-sm"
+                  />
+                )}
               </div>
 
               <button

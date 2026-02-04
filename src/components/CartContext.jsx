@@ -3,6 +3,9 @@ import React, { createContext, useContext, useEffect, useRef, useState } from 'r
 const CartContext = createContext(undefined);
 
 const STORAGE_KEY = 'tamrYafaCart';
+const GIFT_OPTIONS_KEY = 'tamrYafaOrderGiftOptions';
+
+const defaultGiftOptions = { giftWrap: false, giftMessage: false, giftNote: '' };
 
 export function CartProvider({ children }) {
     const [cart, setCart] = useState(() => {
@@ -16,6 +19,28 @@ export function CartProvider({ children }) {
         }
         return [];
     });
+
+    const [orderGiftOptions, setOrderGiftOptionsState] = useState(() => {
+        if (typeof window !== 'undefined') {
+            try {
+                const saved = localStorage.getItem(GIFT_OPTIONS_KEY);
+                return saved ? { ...defaultGiftOptions, ...JSON.parse(saved) } : defaultGiftOptions;
+            } catch {
+                return defaultGiftOptions;
+            }
+        }
+        return defaultGiftOptions;
+    });
+
+    const setOrderGiftOptions = (next) => {
+        setOrderGiftOptionsState((prev) => {
+            const nextState = typeof next === 'function' ? next(prev) : next;
+            if (typeof window !== 'undefined') {
+                localStorage.setItem(GIFT_OPTIONS_KEY, JSON.stringify(nextState));
+            }
+            return nextState;
+        });
+    };
 
     const [toast, setToast] = useState({ open: false, name: '' });
     const toastTimerRef = useRef(null);
@@ -83,7 +108,13 @@ export function CartProvider({ children }) {
         );
     };
 
-    const clearCart = () => setCart([]);
+    const clearCart = () => {
+        setCart([]);
+        setOrderGiftOptionsState(defaultGiftOptions);
+        if (typeof window !== 'undefined') {
+            localStorage.removeItem(GIFT_OPTIONS_KEY);
+        }
+    };
 
     const getCartTotal = () =>
         cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
@@ -99,6 +130,8 @@ export function CartProvider({ children }) {
         clearCart,
         getCartTotal,
         getCartCount,
+        orderGiftOptions,
+        setOrderGiftOptions,
     };
 
     return (
