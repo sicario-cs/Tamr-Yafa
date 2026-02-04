@@ -32,6 +32,7 @@ export function CheckoutPage() {
     const parts = [
       variant.size && `Size: ${variant.size}`,
       variant.flavor && `Flavor: ${variant.flavor}`,
+      variant.chocolateType && `Chocolate: ${variant.chocolateType}`,
       variant.fillings?.length && `Filling: ${variant.fillings.join(', ')}`,
     ].filter(Boolean);
     return parts.length ? ` (${parts.join(', ')})` : '';
@@ -355,6 +356,7 @@ export function CheckoutPage() {
                           {[
                             item.variant.size && `Size: ${item.variant.size}`,
                             item.variant.flavor && `Flavor: ${item.variant.flavor}`,
+                            item.variant.chocolateType && `Chocolate: ${item.variant.chocolateType}`,
                             item.variant.fillings?.length && `Filling: ${item.variant.fillings.join(', ')}`,
                           ]
                             .filter(Boolean)

@@ -53,7 +53,7 @@ export const products = [
         price: 35,
         description: 'Delicate Asafeeri qatayef filled with rich, creamy filling and finished with a light touch of syrup. Soft, indulgent, and crafted to capture the authentic taste of traditional Arabic desserts.',
         image: asafeeriQatayefImage,
-        category: 'desserts',
+        category: 'seasonal',
         highlights: ['Freshly made', 'Cream-filled', 'Traditional recipe'],
         ingredients: 'Flour, milk, yeast, sugar, cream filling, natural flavorings',
         nutrition: 'Per piece: 180 kcal, 9g fat, 22g carbs, 3g protein',
@@ -152,6 +152,13 @@ export const FILLING_OPTIONS = [
     { value: 'pistachio', label: 'Pistachio' },      // فستق حلبي
     { value: 'cashew', label: 'Cashew' },           // كاجو
     { value: 'hazelnut', label: 'Hazelnut' },       // بندق
+];
+
+/** Chocolate type options (Arabic: شوكولاتة داكنة، شوكولاتة بالحليب، شوكولاتة بيضاء) */
+export const CHOCOLATE_TYPE_OPTIONS = [
+    { value: 'dark', label: 'Dark chocolate' },      // شوكولاتة داكنة
+    { value: 'milk', label: 'Milk chocolate' },       // شوكولاتة بالحليب
+    { value: 'white', label: 'White chocolate' },     // شوكولاتة بيضاء
 ];
 
 export function getProductById(id) {

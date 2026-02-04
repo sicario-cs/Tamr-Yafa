@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowLeft, ShoppingCart, Heart, Share2, Star, Plus, Minus } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getProductById, getRelatedProducts, FILLING_OPTIONS } from '../products-data';
+import { getProductById, getRelatedProducts, FILLING_OPTIONS, CHOCOLATE_TYPE_OPTIONS } from '../products-data';
 import { useCart } from '../components/CartContext';
 import { ProductCard } from '../components/ProductCard';
 import { Header } from '../components/Header';
@@ -202,47 +202,92 @@ export function ProductDetailPage() {
                   </div>
                 )}
 
-                {/* Filling – available for all products */}
-                <div>
-                  <span className="block text-[#5A2D0C] mb-2">Filling</span>
-                  <div className="flex flex-wrap gap-3">
-                    {FILLING_OPTIONS.map((opt) => {
-                      const fillings = selectedVariant.fillings || [];
-                      const checked = fillings.includes(opt.label);
-                      return (
-                        <label
-                          key={opt.value}
-                          className="flex items-center gap-2 cursor-pointer"
-                        >
-                          <input
-                            type="checkbox"
-                            name="filling"
-                            value={opt.value}
-                            checked={checked}
-                            onChange={() => {
-                              const next = checked
-                                ? fillings.filter((f) => f !== opt.label)
-                                : [...fillings, opt.label];
-                              setSelectedVariant({
-                                ...selectedVariant,
-                                fillings: next.length ? next : undefined,
-                              });
-                            }}
-                            className="rounded border-[#7A4B2A]/40 text-[#7A4B2A] focus:ring-[#7A4B2A]/30"
-                          />
-                          <span className="text-[#5A2D0C] text-sm">{opt.label}</span>
-                        </label>
-                      );
-                    })}
+                {/* Chocolate type – all products except Asafeeri Qatayef */}
+                {product.id !== 'asafeeri-qatayef' && (
+                  <div>
+                    <label htmlFor="variantChocolateType" className="block text-[#5A2D0C] mb-2">Chocolate type</label>
+                    <select
+                      id="variantChocolateType"
+                      name="variantChocolateType"
+                      value={selectedVariant.chocolateType || ''}
+                      onChange={(e) =>
+                        setSelectedVariant({ ...selectedVariant, chocolateType: e.target.value || undefined })
+                      }
+                      className="w-full px-4 py-3 rounded-lg bg-[#F3E9E1] border border-[#7A4B2A]/20 text-[#5A2D0C] outline-none focus:ring-2 focus:ring-[#7A4B2A]/30"
+                    >
+                      <option value="">Select chocolate type</option>
+                      {CHOCOLATE_TYPE_OPTIONS.map((opt) => (
+                        <option key={opt.value} value={opt.label}>
+                          {opt.label}
+                        </option>
+                      ))}
+                    </select>
                   </div>
-                </div>
+                )}
+
+                {/* Filling – all products except Asafeeri Qatayef */}
+                {product.id !== 'asafeeri-qatayef' && (
+                  <div>
+                    <span className="block text-[#5A2D0C] mb-2">Filling</span>
+                    <div className="flex flex-wrap gap-3">
+                      {FILLING_OPTIONS.map((opt) => {
+                        const fillings = selectedVariant.fillings || [];
+                        const checked = fillings.includes(opt.label);
+                        return (
+                          <label
+                            key={opt.value}
+                            className="flex items-center gap-2 cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              name="filling"
+                              value={opt.value}
+                              checked={checked}
+                              onChange={() => {
+                                const next = checked
+                                  ? fillings.filter((f) => f !== opt.label)
+                                  : [...fillings, opt.label];
+                                setSelectedVariant({
+                                  ...selectedVariant,
+                                  fillings: next.length ? next : undefined,
+                                });
+                              }}
+                              className="rounded border-[#7A4B2A]/40 text-[#7A4B2A] focus:ring-[#7A4B2A]/30"
+                            />
+                            <span className="text-[#5A2D0C] text-sm">{opt.label}</span>
+                          </label>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 
-            {/* Filling only (when product has no other variants) */}
-            {(!product.variants || (!product.variants.sizes && !product.variants.flavors)) && (
-              <div className="mb-6">
-                <span className="block text-[#5A2D0C] mb-2">Filling</span>
+            {/* Chocolate type & Filling only (when product has no other variants; not for Asafeeri Qatayef) */}
+            {product.id !== 'asafeeri-qatayef' && (!product.variants || (!product.variants.sizes && !product.variants.flavors)) && (
+              <div className="space-y-4 mb-6">
+                <div>
+                  <label htmlFor="variantChocolateTypeOnly" className="block text-[#5A2D0C] mb-2">Chocolate type</label>
+                  <select
+                    id="variantChocolateTypeOnly"
+                    name="variantChocolateTypeOnly"
+                    value={selectedVariant.chocolateType || ''}
+                    onChange={(e) =>
+                      setSelectedVariant({ ...selectedVariant, chocolateType: e.target.value || undefined })
+                    }
+                    className="w-full px-4 py-3 rounded-lg bg-[#F3E9E1] border border-[#7A4B2A]/20 text-[#5A2D0C] outline-none focus:ring-2 focus:ring-[#7A4B2A]/30"
+                  >
+                    <option value="">Select chocolate type</option>
+                    {CHOCOLATE_TYPE_OPTIONS.map((opt) => (
+                      <option key={opt.value} value={opt.label}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <span className="block text-[#5A2D0C] mb-2">Filling</span>
                 <div className="flex flex-wrap gap-3">
                   {FILLING_OPTIONS.map((opt) => {
                     const fillings = selectedVariant.fillings || [];
@@ -272,6 +317,7 @@ export function ProductDetailPage() {
                       </label>
                     );
                   })}
+                </div>
                 </div>
               </div>
             )}

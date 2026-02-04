@@ -85,6 +85,7 @@ export function CartPage() {
                           {[
                             item.variant.size && `Size: ${item.variant.size}`,
                             item.variant.flavor && `Flavor: ${item.variant.flavor}`,
+                            item.variant.chocolateType && `Chocolate: ${item.variant.chocolateType}`,
                             item.variant.fillings?.length && `Filling: ${item.variant.fillings.join(', ')}`,
                             item.variant.giftWrap && 'Gift wrapping',
                             item.variant.giftMessage && 'Personal message',
