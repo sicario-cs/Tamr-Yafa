@@ -14,7 +14,7 @@ export function Footer() {
                     <div>
                         <h3 className="font-heading text-[#B8860B] mb-4">Tamr Yafa</h3>
                         <p className="text-[#F3E9E1]/80 text-sm mb-4">
-                            Handcrafted bean-to-bar chocolates made with single-origin cacao. Crafted with passion, wrapped with love.
+                            Dates stuffed with nuts and covered in chocolate. Designed with decorations and colors suited for all occasions.
                         </p>
                         <div className="flex gap-4">
                             <a
@@ -56,15 +56,7 @@ export function Footer() {
                                     All Products
                                 </button>
                             </li>
-                            <li>
-                                <button
-                                    type="button"
-                                    onClick={() => navigate('/shop')}
-                                    className="text-[#F3E9E1]/80 hover:text-[#B8860B] transition-colors text-sm"
-                                >
-                                    Chocolate Bars
-                                </button>
-                            </li>
+                            
                             <li>
                                
                             </li>
@@ -122,7 +114,7 @@ export function Footer() {
                             </li>
                             <li className="flex items-center gap-2 text-sm text-[#F3E9E1]/80">
                                 <Phone className="w-4 h-4 shrink-0" />
-                                <span>(+970) 597 622 752</span>
+                                <span>(+970) ##########</span>
                             </li>
                             <li className="flex items-center gap-2 text-sm text-[#F3E9E1]/80">
                                 <Mail className="w-4 h-4 shrink-0" />

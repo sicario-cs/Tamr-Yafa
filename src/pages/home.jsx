@@ -7,6 +7,7 @@ import { ProductCard } from '../components/ProductCard';
 import { useCart } from '../components/CartContext.jsx';
 import { getFeaturedProducts } from '../products-data.js';
 import homePageImage from '../assets/HomePageImage.png';
+import chocolateTamrImage from '../assets/ProductsImage/chocolateTamr.jpeg';
 import palestinianCollectionImage from '../assets/ProductsImage/palestineFlage.jpeg';
 export function HomePage() {
     const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -35,7 +36,7 @@ export function HomePage() {
             <section className="relative h-[600px] md:h-[700px] flex items-center">
                 <div className="absolute inset-0">
                     <img
-                        src={homePageImage}
+                        src={chocolateTamrImage}
                         alt="Artisan chocolates"
                         className="w-full h-full object-cover"
                     />
@@ -48,10 +49,10 @@ export function HomePage() {
                             Taste the Story
                         </h1>
                         <p className="text-[#F3E9E1] text-xl md:text-2xl mb-4">
-                            Handcrafted Chocolates from Bean to Bar
+                            Handcrafted Dates Stuffed with Nuts & Chocolate
                         </p>
                         <p className="text-[#F3E9E1]/90 text-lg mb-8">
-                            Made with single-origin cacao, crafted in small batches, and beautifully wrapped.
+                            Dates stuffed with nuts, covered in chocolate, and beautifully wrapped for every occasion.
                         </p>
                         <button
                             type="button"

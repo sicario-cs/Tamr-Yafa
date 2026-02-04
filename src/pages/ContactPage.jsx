@@ -84,7 +84,7 @@ export function ContactPage() {
             </div>
             <h3 className="font-heading text-[#5A2D0C] mb-2">Phone</h3>
             <p className="text-[#7A4B2A]/70 text-sm">
-              (+970) 597 622 752
+              (+970) ##########
             </p>
           </div>
         </div>
