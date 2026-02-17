@@ -10,6 +10,8 @@ const PRODUCT_I18N_KEYS = {
     'gift-classics': 'products.palestinianCollection',
     'gift-baby-girl': 'products.babyGirlGiftBox',
     'gift-graduation': 'products.graduationGiftBox',
+    'gift-Umrah': 'products.umrahGiftBox',
+    'gift-ramadan': 'products.ramadanGiftBox',
 };
 
 export function ProductCard({ product, onViewDetails, onAddToCart }) {

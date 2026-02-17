@@ -6,16 +6,12 @@ import ar from './locales/ar/translation.json';
 
 const STORAGE_KEY = 'tamrYafaLanguage';
 
-// Detect initial language: localStorage -> browser language -> English
+// Detect initial language: localStorage -> English (default)
 const getInitialLanguage = () => {
   if (typeof window !== 'undefined') {
     const stored = window.localStorage.getItem(STORAGE_KEY);
     if (stored === 'en' || stored === 'ar') {
       return stored;
-    }
-    const browserLang = window.navigator.language || window.navigator.userLanguage;
-    if (browserLang?.toLowerCase().startsWith('ar')) {
-      return 'ar';
     }
   }
   return 'en';

@@ -92,7 +92,28 @@
       "review1": "Absolutely divine! The perfect balance of rich chocolate and subtle sweetness.",
       "review2": "Best chocolate I've ever had. You can really taste the quality."
     },
-    "youMayAlsoLike": "You May Also Like"
+    "youMayAlsoLike": "You May Also Like",
+    "sizes": {
+      "9 pieces": "9 pieces",
+      "25 pieces": "25 pieces"
+    },
+    "chocolateTypes": {
+      "Dark chocolate": "Dark chocolate",
+      "Milk chocolate": "Milk chocolate",
+      "White chocolate": "White chocolate"
+    },
+    "fillings": {
+      "Almond": "Almond",
+      "Walnut": "Walnut",
+      "Pistachio": "Pistachio",
+      "Cashew": "Cashew",
+      "Hazelnut": "Hazelnut"
+    },
+    "flavors": {
+      "Chocolate": "Chocolate",
+      "Dubai Chocolate": "Dubai Chocolate",
+      "Cream": "Cream"
+    }
   },
   "cart": {
     "emptyTitle": "Your Cart is Empty",
@@ -256,6 +277,14 @@
     "graduationGiftBox": {
       "name": "Graduation Gift Box",
       "description": "Graduation gift box with assorted chocolates, perfect for graduation ceremonies and celebrations."
+    },
+    "umrahGiftBox": {
+      "name": "Umrah Gift Box",
+      "description": "Umrah gift box with assorted chocolates, perfect for Umrah ceremonies."
+    },
+    "ramadanGiftBox": {
+      "name": "Ramadan Gift Box",
+      "description": "Ramadan gift box with assorted chocolates, perfect for Ramadan ceremonies."
     }
   }
 }

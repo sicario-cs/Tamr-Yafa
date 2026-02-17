@@ -5,6 +5,8 @@ import babyBoyGiftBoxImage from './assets/ProductsImage/babyBoy.jpeg';
 import babyGirlGiftBoxImage from './assets/ProductsImage/babyGirl.jpeg';
 import eidAlAdhaCollectionImage from './assets/ProductsImage/eidAladha.jpeg';
 import graduationGiftBoxImage from './assets/ProductsImage/graduation.jpeg';
+import umrahGiftBoxImage from './assets/ProductsImage/umrah.jpeg';
+import ramadanGiftBoxImage from './assets/ProductsImage/ramadan.jpeg';
 export const products = [
     {
         id: 'chocolate-dates',
@@ -128,6 +130,46 @@ export const products = [
         description: 'Graduation gift box with assorted chocolates, perfect for graduation ceremonies and celebrations.',
         image: graduationGiftBoxImage,
         category: 'gift-sets',
+        highlights: ['Gift box', 'Handcrafted', 'Elegant presentation'],
+        variants: {
+            sizes: ['9 pieces', '25 pieces'],
+            sizePrices: {
+                '9 pieces': 30,
+                '25 pieces': 80,
+            },
+        },
+        highlights: ['Graduation theme', 'Assorted chocolates', 'Keepsake-style box'],
+        available: true,
+        featured: false,
+        relatedProducts: ['gift-classics'],
+    },
+    {
+        id: 'gift-Umrah',
+        name: 'Umrah Gift Box',
+        price: 30,
+        description: 'Umrah gift box with assorted chocolates, perfect for Umrah ceremonies.',
+        image: umrahGiftBoxImage,
+        category: 'seasonal',
+        highlights: ['Gift box', 'Handcrafted', 'Elegant presentation'],
+        variants: {
+            sizes: ['9 pieces', '25 pieces'],
+            sizePrices: {
+                '9 pieces': 30,
+                '25 pieces': 80,
+            },
+        },
+        highlights: ['Graduation theme', 'Assorted chocolates', 'Keepsake-style box'],
+        available: true,
+        featured: false,
+        relatedProducts: ['gift-classics'],
+    },
+    {
+        id: 'gift-ramadan',
+        name: 'Ramadan Gift Box',
+        price: 30,
+        description: 'Ramadan gift box with assorted chocolates, perfect for Ramadan ceremonies.',
+        image: ramadanGiftBoxImage,
+        category: 'seasonal',
         highlights: ['Gift box', 'Handcrafted', 'Elegant presentation'],
         variants: {
             sizes: ['9 pieces', '25 pieces'],

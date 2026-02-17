@@ -32,10 +32,10 @@ export function CheckoutPage() {
   const formatItemVariant = (variant) => {
     if (!variant) return '';
     const parts = [
-      variant.size && `${t('product.size')}: ${variant.size}`,
-      variant.flavor && `${t('product.flavor')}: ${variant.flavor}`,
-      variant.chocolateType && `${t('product.chocolateType')}: ${variant.chocolateType}`,
-      variant.fillings?.length && `${t('product.filling')}: ${variant.fillings.join(', ')}`,
+      variant.size && `${t('product.size')}: ${t(`product.sizes.${variant.size}`, { defaultValue: variant.size })}`,
+      variant.flavor && `${t('product.flavor')}: ${t(`product.flavors.${variant.flavor}`, { defaultValue: variant.flavor })}`,
+      variant.chocolateType && `${t('product.chocolateType')}: ${t(`product.chocolateTypes.${variant.chocolateType}`, { defaultValue: variant.chocolateType })}`,
+      variant.fillings?.length && `${t('product.filling')}: ${variant.fillings.map(f => t(`product.fillings.${f}`, { defaultValue: f })).join(', ')}`,
     ].filter(Boolean);
     return parts.length ? ` (${parts.join(', ')})` : '';
   };
@@ -358,10 +358,10 @@ export function CheckoutPage() {
                       {item.variant && (
                         <p className="text-[11px] text-[#7A4B2A]/60 truncate">
                           {[
-                            item.variant.size && `Size: ${item.variant.size}`,
-                            item.variant.flavor && `Flavor: ${item.variant.flavor}`,
-                            item.variant.chocolateType && `Chocolate: ${item.variant.chocolateType}`,
-                            item.variant.fillings?.length && `Filling: ${item.variant.fillings.join(', ')}`,
+                            item.variant.size && `${t('product.size')}: ${t(`product.sizes.${item.variant.size}`, { defaultValue: item.variant.size })}`,
+                            item.variant.flavor && `${t('product.flavor')}: ${t(`product.flavors.${item.variant.flavor}`, { defaultValue: item.variant.flavor })}`,
+                            item.variant.chocolateType && `${t('product.chocolateType')}: ${t(`product.chocolateTypes.${item.variant.chocolateType}`, { defaultValue: item.variant.chocolateType })}`,
+                            item.variant.fillings?.length && `${t('product.filling')}: ${item.variant.fillings.map(f => t(`product.fillings.${f}`, { defaultValue: f })).join(', ')}`,
                           ]
                             .filter(Boolean)
                             .join(' • ')}

@@ -16,6 +16,8 @@ const PRODUCT_I18N_KEYS = {
   'gift-classics': 'products.palestinianCollection',
   'gift-baby-girl': 'products.babyGirlGiftBox',
   'gift-graduation': 'products.graduationGiftBox',
+  'gift-Umrah': 'products.umrahGiftBox',
+  'gift-ramadan': 'products.ramadanGiftBox',
 };
 
 export function ProductDetailPage() {
@@ -193,7 +195,7 @@ export function ProductDetailPage() {
                       <option value="">{t('product.selectSize')}</option>
                       {product.variants.sizes.map((size) => (
                         <option key={size} value={size}>
-                          {size}
+                          {t(`product.sizes.${size}`, { defaultValue: size })}
                         </option>
                       ))}
                     </select>
@@ -217,7 +219,7 @@ export function ProductDetailPage() {
                       <option value="">{t('product.selectFlavor')}</option>
                       {product.variants.flavors.map((flavor) => (
                         <option key={flavor} value={flavor}>
-                          {flavor}
+                          {t(`product.flavors.${flavor}`, { defaultValue: flavor })}
                         </option>
                       ))}
                     </select>
@@ -242,7 +244,7 @@ export function ProductDetailPage() {
                       <option value="">{t('product.selectChocolateType')}</option>
                       {CHOCOLATE_TYPE_OPTIONS.map((opt) => (
                         <option key={opt.value} value={opt.label}>
-                          {opt.label}
+                          {t(`product.chocolateTypes.${opt.label}`, { defaultValue: opt.label })}
                         </option>
                       ))}
                     </select>
@@ -280,7 +282,9 @@ export function ProductDetailPage() {
                               }}
                               className="rounded border-[#7A4B2A]/40 text-[#7A4B2A] focus:ring-[#7A4B2A]/30"
                             />
-                            <span className="text-[#5A2D0C] text-sm">{opt.label}</span>
+                            <span className="text-[#5A2D0C] text-sm">
+                              {t(`product.fillings.${opt.label}`, { defaultValue: opt.label })}
+                            </span>
                           </label>
                         );
                       })}
@@ -309,7 +313,7 @@ export function ProductDetailPage() {
                     <option value="">{t('product.selectChocolateType')}</option>
                     {CHOCOLATE_TYPE_OPTIONS.map((opt) => (
                       <option key={opt.value} value={opt.label}>
-                        {opt.label}
+                        {t(`product.chocolateTypes.${opt.label}`, { defaultValue: opt.label })}
                       </option>
                     ))}
                   </select>
@@ -343,7 +347,9 @@ export function ProductDetailPage() {
                           }}
                           className="rounded border-[#7A4B2A]/40 text-[#7A4B2A] focus:ring-[#7A4B2A]/30"
                         />
-                        <span className="text-[#5A2D0C] text-sm">{opt.label}</span>
+                        <span className="text-[#5A2D0C] text-sm">
+                          {t(`product.fillings.${opt.label}`, { defaultValue: opt.label })}
+                        </span>
                       </label>
                     );
                   })}

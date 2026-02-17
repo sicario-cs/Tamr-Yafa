@@ -92,12 +92,12 @@ export function CartPage() {
                       {item.variant && (
                         <p className="text-sm text-[#7A4B2A]/60 mb-2">
                           {[
-                            item.variant.size && `Size: ${item.variant.size}`,
-                            item.variant.flavor && `Flavor: ${item.variant.flavor}`,
-                            item.variant.chocolateType && `Chocolate: ${item.variant.chocolateType}`,
-                            item.variant.fillings?.length && `Filling: ${item.variant.fillings.join(', ')}`,
-                            item.variant.giftWrap && 'Gift wrapping',
-                            item.variant.giftMessage && 'Personal message',
+                            item.variant.size && `${t('product.size')}: ${t(`product.sizes.${item.variant.size}`, { defaultValue: item.variant.size })}`,
+                            item.variant.flavor && `${t('product.flavor')}: ${t(`product.flavors.${item.variant.flavor}`, { defaultValue: item.variant.flavor })}`,
+                            item.variant.chocolateType && `${t('product.chocolateType')}: ${t(`product.chocolateTypes.${item.variant.chocolateType}`, { defaultValue: item.variant.chocolateType })}`,
+                            item.variant.fillings?.length && `${t('product.filling')}: ${item.variant.fillings.map(f => t(`product.fillings.${f}`, { defaultValue: f })).join(', ')}`,
+                            item.variant.giftWrap && t('cart.addGiftWrapping'),
+                            item.variant.giftMessage && t('cart.addPersonalMessage'),
                             item.variant.giftNote && `Note: ${item.variant.giftNote}`,
                           ]
                             .filter(Boolean)
