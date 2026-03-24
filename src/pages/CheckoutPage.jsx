@@ -7,7 +7,7 @@ import { Footer } from '../components/Footer';
 import { useTranslation } from 'react-i18next';
 
 // Shop owner WhatsApp number (with country code, no + or spaces).
-const SHOP_WHATSAPP_NUMBER = '972599987735';
+const SHOP_WHATSAPP_NUMBER = '972599439766';
 const GIFT_WRAP_FEE = 5;
 
 export function CheckoutPage() {
